@@ -1,15 +1,249 @@
-/* selectors */
 body {
+    margin: 0;
+    overflow: none;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.person .spcl {
+    font-family: 'Sacramento', cursive;
+    font-size: 42px;
+    padding-top: 60px;
+}
+.navbar {
+    position: sticky;
+    /* border: 2px solid red; */
+    padding: 0;
+    background-color: #A1C298;
+    top: 0;
+    margin: 0;
+    height: 80px;
+    width: 100%;
+}
+.left {
+    font-family: serif;
+    position: relative;
+    display: block;
+    /* border: 2px solid green; */
+    width: 20%;
+    top: 10px;
+    left: 10px;
+    margin: 0;
+    font-size: 50px;
+}
+.right {
+    display: block;
+    position: relative;
+    /* border: 2px solid purple; */
+    width: 33%;
+    top: -47px;
+    margin: auto 0 auto auto;
+}
+
+.person{
     background-color: #CDFCF6;
+    margin: 0;
+    border: 0;
 }
 
-h2 {
-    color: #1D1CE5;
+.clickables a {
+    text-decoration: none;
+    color: black;
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid white;
 }
 
-/* class */
-.imp {
-    color: midnightblue;
+.clickables a:hover {
+    background-color: #EBC7E8;
+    color: crimson;
+    border: 2px solid grey;
 }
 
-/* ids */
+.clickables li {
+    list-style: none;
+    display: inline-block;
+    margin: 0px 10px;
+}
+
+.person img {
+    display: block;
+    height: 320px;
+    width: 550px;
+    margin: 0 auto;
+    padding-top: 30px;
+}
+.person h1 {
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+    padding: 20px;
+}
+.person h3 {
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+    padding: 20px;
+    font-size:larger;
+}
+hr {
+    padding: 20px;
+    border-width: 8px;
+    border: 20px 0 0 0;
+    border-style: dotted none none none;
+    width: 5%;
+    border-color: grey;
+    margin-top: 25px;
+}
+.about {
+    background-color: #fff0d2;
+    padding: 20px;
+}
+.about h1 {
+    display: block;
+    margin: 0 auto;
+}
+.about p {
+    width: 60%;
+    display: block;
+    margin: 0 auto;
+    padding: 30px;
+}
+
+.edu h1 {
+    padding: 30px;
+    margin-top: 40px;
+}
+
+.edu .verbar {
+    border: 5px dotted purple;
+    height: 350px;
+    width: 0px;
+    background-color: rgb(198, 68, 198);
+    margin: 0 auto;
+}
+
+.edu .college {
+    /* border: 2px solid red; */
+    float: left;
+    margin: 5px 0px 5px 30px;
+    width: 360px;
+}
+
+.edu .school {
+    /* border: 2px solid green; */
+    float: right;
+    margin: 5px 30px 5px 0px;
+    width: 360px;
+    text-align: right;
+}
+
+.college h2 {
+    padding: 2px;
+    margin: 0 5px;
+}
+
+.college p {
+    padding: 10px;
+    margin: 0;
+}
+
+.college h4 {
+    margin: 0 10px;
+}
+
+.school h2 {
+    padding: 2px;
+    margin: 0 21px;
+}
+
+.school p {
+    padding: 5px;
+    margin: 0;
+    margin: 0 0 0 auto;
+}
+
+.school h4 {
+    margin:10px 10px;
+}
+
+.skills {
+    padding-top: 70px;
+    padding-bottom: 50px;
+    background-color: #FFD8A9;
+    margin: 0;
+    border: 0;
+    width: 100%;
+}
+
+.skills ul {
+    margin: 0;
+    padding: 15px;
+}
+
+.skills li {
+    padding:15px 10px;
+    list-style: none;
+    text-align: center;
+    color: #EB1D36;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.projects {
+    background-color: #EBC7E8;
+    padding: 60px;
+}
+
+.projects h1 {
+    padding: 40px;
+}
+
+.projects ol {
+    margin: 0 auto;
+    width: 43%;
+    padding: 10px;
+}
+
+.projects li {
+    margin: auto;
+    position: relative;
+    left: 196px;
+    padding: 30px;
+}
+
+.projects a {
+    text-decoration: solid;
+    color: black;
+    font-weight: bold;
+    background: #B1BCE6;
+    padding: 10px;
+    border: 8px solid #EBC7E8;
+}
+
+.projects a:hover {
+    border: 8px solid #B1BCE6;
+    background-color: #B1BCE6;
+    border-radius: 10px;
+}
+
+.contactme {
+    padding: 40px;
+}
+
+.contactme h1 {
+    text-align: left;
+}
+
+.contactme img {
+    display: inline-block;
+    width: 26px;
+    height: 26px;
+}
+
+.contactme a {
+    text-decoration: none;
+}
+
+
+
