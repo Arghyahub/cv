@@ -4,6 +4,8 @@ font-family: 'Montserrat', sans-serif;
 font-family: 'Sacramento', cursive; 
 */
 
+/* #F54748 */
+
 body {
     margin: 0;
     padding: 0;
@@ -14,7 +16,7 @@ li {
 }
 
 #navbar {
-    border: 2px solid red;
+    border: 2px solid #F54748;
     color: white;
     display: flex;
     position: sticky;
@@ -45,7 +47,7 @@ ul#ul-link a {
 ul#ul-link a:hover {
     transition-timing-function: ease-in;
     transition-duration: 300ms;
-    color: red;
+    color: #F54748;
 }
 
 #navlogo {
@@ -68,11 +70,11 @@ ul#ul-link a:hover {
 /* Home page section */
 
 #homeSect {
-    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 700px;
+    min-height: 90vh;
+    width: 100%;
     border: 2px solid black;
     text-align: center;
 }
@@ -80,6 +82,7 @@ ul#ul-link a:hover {
 #homeSect::before {
     content: "";
     position: absolute;
+    top: 0;
     height: 100%;
     width: 100%;
     background: url("../images/profilepic.jpg") no-repeat center center/cover;
@@ -104,7 +107,23 @@ ul#ul-link a:hover {
 /*     About      */
 
 
+#aboutSect {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 150px 0;
+}
 
+#aboutSect img{
+    max-width: 500px;
+    max-height: 400px;
+    margin: 38px;
+}
+
+#aboutblock {
+    min-height: 400px;
+    width: 50%;
+}
 
 
 
