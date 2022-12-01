@@ -1,0 +1,111 @@
+/*  Fonts I will use later
+font-family: 'Merriweather', serif;
+font-family: 'Montserrat', sans-serif;
+font-family: 'Sacramento', cursive; 
+*/
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style: none;
+}
+
+#navbar {
+    border: 2px solid red;
+    color: white;
+    display: flex;
+    position: sticky;
+    top: 0;
+    align-items: center;
+}
+
+ul#ul-link {
+    display: flex;
+    position: absolute;
+    right: 0;
+    padding: 0.1rem;
+    margin-right: 2rem;
+}
+ul#ul-link li {
+    margin: 0.5rem;
+}
+
+ul#ul-link a {
+    border: 2px solid blue;
+    background-color: white;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    border-radius: 10px;
+    color: black;
+}
+
+ul#ul-link a:hover {
+    transition-timing-function: ease-in;
+    transition-duration: 300ms;
+    color: red;
+}
+
+#navlogo {
+    margin: 4px;
+    padding: 0;
+}
+#navlogo img {
+    max-height: 50px;
+    max-width: 50px;
+}
+
+.clickables #proj {
+    padding: 0.5rem 0.7rem;
+}
+.clickables #cnt {
+    padding: 0.5rem 0.8rem;
+}
+
+
+/* Home page section */
+
+#homeSect {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 700px;
+    border: 2px solid black;
+    text-align: center;
+}
+
+#homeSect::before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: url("../images/profilepic.jpg") no-repeat center center/cover;
+    opacity: 0.85;
+    z-index: -1;
+}
+
+#homeText {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    top: -120px;
+}
+
+#homeMain , #homeNote  {
+    margin: 5px 0;
+}
+#homeDev {
+    margin: 15px 0;
+}
+
+/*     About      */
+
+
+
+
+
+
+
