@@ -207,3 +207,41 @@ ul#ul-link a:hover {
     border-radius: 5px;
 }
 
+
+/*          Project Section      */
+
+#projectSect {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10vw 0;
+}
+
+div#top4Proj {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.projectBox {
+    width: 305px;
+    height: 210px;
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: rgb(201, 254, 236);
+    border-radius: 5px;
+}
+
+.projectBox img {
+    width: 248px;
+    height: 157px;
+    padding: 5px;
+}
+
+
+
