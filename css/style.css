@@ -6,6 +6,21 @@ font-family: 'Sacramento', cursive;
 
 /* #F54748 */
 
+html {
+    scroll-behavior: smooth;
+}
+
+h1 {
+    font-family: 'Merriweather', serif;
+}
+p {
+    font-family: 'Montserrat', sans-serif;
+}
+
+a {
+    font-family: 'Montserrat', sans-serif;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -29,15 +44,17 @@ ul#ul-link {
     position: absolute;
     right: 0;
     padding: 0.1rem;
-    margin-right: 2rem;
+    margin-right: 1vw;
 }
 ul#ul-link li {
-    margin: 0.5rem;
+    margin: 1vw;
 }
 
 ul#ul-link a {
-    border: 2px solid blue;
-    background-color: white;
+    /* border: 2px solid blue; */
+    /* background-color: white; */
+    font-weight: 900;
+    font-size: 1.2rem;
     padding: 0.5rem 1rem;
     text-decoration: none;
     border-radius: 10px;
@@ -55,8 +72,9 @@ ul#ul-link a:hover {
     padding: 0;
 }
 #navlogo img {
-    max-height: 50px;
-    max-width: 50px;
+    max-height: 45px;
+    max-width: 45px;
+    border-radius: 5px;
 }
 
 .clickables #proj {
@@ -93,11 +111,19 @@ ul#ul-link a:hover {
     display: flex;
     flex-direction: column;
     position: relative;
-    top: -120px;
+    top: -140px;
 }
 
-#homeMain , #homeNote  {
-    margin: 5px 0;
+#homeMain  {
+    margin: 8px 0;
+    font-size: 1.2rem;
+    color: white;
+}
+#homeNote {
+    margin: 8px 0;
+    font-size: 1rem;
+    color: white;
+    max-width: 478px;
 }
 #homeDev {
     margin: 15px 0;
@@ -121,7 +147,6 @@ ul#ul-link a:hover {
     max-width: 35%;
     min-width: 298px;
     border-radius: 10px;
-    opacity: 0.95;
 }
 
 
@@ -150,10 +175,19 @@ ul#ul-link a:hover {
 
 #getCv {
     background-color: #F54748 ;
-    padding: 7px 20px;
+    padding: 13px 23px;
     border-radius: 50px;
     margin: 20px 0px;
     border: 0;
+    font-size: 1rem;
+}
+
+#getCv:hover {
+    transition: ease-in 600ms;
+    background-color: #86fd32;
+}
+#getCv:hover a {
+    color: black;
 }
 
 #getCv a {
@@ -183,11 +217,12 @@ ul#ul-link a:hover {
 .skillBox {
     width: 250px;
     height: 100px;
-    border: 0.5px solid red;
+    /* border: 0.5px solid red; */
     border-radius: 15px;
     display: flex;
     align-items: center;
-    margin: 4px;
+    margin: 10px;
+    background-color: white;
 }
 
 #skillDiv {
@@ -197,16 +232,30 @@ ul#ul-link a:hover {
     align-items: center;
 }
 
-.skillBox img {
-    height: 45px;
-    width: 45px;
-    /* background-color: red; */
-    margin-left: 15px;
-    margin-right: 8px;
-    padding: 5px;
-    border-radius: 5px;
+.sImgD {
+    border-radius: 50%;
+    margin: 0 5px 0 15px;
+    padding: 10px;
+    box-shadow: 0 0 14px -5px rgb(0 0 0 / 13%);
 }
 
+.skillBox img {
+    height: 40px;
+    width: 40px;
+    /* background-color: red; */
+    /* border: 1px solid green; */
+    filter: invert(48%) sepia(74%) saturate(4804%) hue-rotate(332deg) brightness(93%) contrast(105%);
+}
+
+.skillBox:hover .sImgD {
+    background-color: #F54748 ;
+    transition: ease-in 200ms;
+    opacity: 0.8;
+}
+
+.skillBox:hover img {
+    filter: none;
+}
 
 /*          Project Section      */
 
@@ -233,8 +282,13 @@ div#top4Proj {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background: rgb(214, 250, 238);
+    background: rgb(231, 253, 245);
     border-radius: 5px;
+    border: 3px solid  rgb(231, 253, 245);
+}
+
+.projectBox:hover {
+    border: 3px solid aquamarine;
 }
 
 .projectBox img {
@@ -245,6 +299,7 @@ div#top4Proj {
 
 #projectHead {
     margin: 0 0 6vw 0;
+    font-size: 2rem;
 }
 
 #projEnd {
