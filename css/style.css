@@ -120,6 +120,8 @@ ul#ul-link a:hover {
     min-height: 262px;
     max-width: 35%;
     min-width: 298px;
+    border-radius: 10px;
+    opacity: 0.95;
 }
 
 
@@ -158,3 +160,50 @@ ul#ul-link a:hover {
     text-decoration: none;
     color: white;
 }
+
+
+
+/*      Skills section */
+
+#skillSect {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    /* border: 2px solid green; */
+    padding: 10vw 0;
+    background-color: #ebf4f5;
+}
+
+#skillHead {
+    margin: 25px 0;
+}
+
+.skillBox {
+    width: 250px;
+    height: 100px;
+    border: 0.5px solid red;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    margin: 4px;
+}
+
+#skillDiv {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.skillBox img {
+    height: 45px;
+    width: 45px;
+    /* background-color: red; */
+    margin-left: 15px;
+    margin-right: 8px;
+    padding: 5px;
+    border-radius: 5px;
+}
+
