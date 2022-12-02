@@ -215,7 +215,7 @@ ul#ul-link a:hover {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 10vw 0;
+    padding: 5vw 0 9vw 0;
 }
 
 div#top4Proj {
@@ -233,7 +233,7 @@ div#top4Proj {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background: rgb(201, 254, 236);
+    background: rgb(214, 250, 238);
     border-radius: 5px;
 }
 
@@ -241,6 +241,70 @@ div#top4Proj {
     width: 248px;
     height: 157px;
     padding: 5px;
+}
+
+#projectHead {
+    margin: 0 0 6vw 0;
+}
+
+#projEnd {
+    margin: 5vw 0;
+}
+
+/*      Contact Section      */
+
+#contactSect {
+    background: rgb(126, 126, 126);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 4vw 0;
+}
+
+#thanksLogo {
+    height: 70px;
+    width: 69px;
+}
+
+#contactSect p {
+    color: white;
+    margin: 0 4vw;
+}
+
+
+#socialmedia {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#socialmedia img {
+    height: 40px;
+    width: 40px;
+    padding: 10px;
+}
+
+.smbox {
+    margin: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.smbox a {
+    text-decoration: none;
+    color: rgb(127, 200, 255);
+}
+
+/*      Footer       */
+
+footer {
+    display: flex;
+    justify-content: center;
+    background-color: black;
+    color: white;
 }
 
 
