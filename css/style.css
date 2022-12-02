@@ -16,7 +16,7 @@ li {
 }
 
 #navbar {
-    border: 2px solid #F54748;
+    /* border: 2px solid #F54748; */
     color: white;
     display: flex;
     position: sticky;
@@ -74,7 +74,7 @@ ul#ul-link a:hover {
     justify-content: center;
     align-items: center;
     min-height: 90vh;
-    border: 2px solid black;
+    /* border: 2px solid black; */
     text-align: center;
 }
 
@@ -110,14 +110,16 @@ ul#ul-link a:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 150px 0;
+    margin: 10vw 0;
     flex-wrap: wrap;
+    /* border: 2px solid green; */
 }
 
 #aboutSect img{
-    max-width: 35%;
     margin: 11px;
-
+    min-height: 262px;
+    max-width: 35%;
+    min-width: 298px;
 }
 
 
@@ -127,5 +129,32 @@ ul#ul-link a:hover {
 }
 
 
+/*  MEDIA QUERY FOR IMAGE */
 
+@media (max-width: 738px) {
+    #aboutSect img{
+        max-width: 68%;
+        margin: 11px;
+        min-width: none;
+    
+    }
+}
 
+/* ABOUT BOX */
+
+#aboutMe {
+    color: #F54748 ;
+}
+
+#getCv {
+    background-color: #F54748 ;
+    padding: 7px 20px;
+    border-radius: 50px;
+    margin: 20px 0px;
+    border: 0;
+}
+
+#getCv a {
+    text-decoration: none;
+    color: white;
+}
