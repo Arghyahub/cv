@@ -74,7 +74,6 @@ ul#ul-link a:hover {
     justify-content: center;
     align-items: center;
     min-height: 90vh;
-    width: 100%;
     border: 2px solid black;
     text-align: center;
 }
@@ -112,17 +111,19 @@ ul#ul-link a:hover {
     justify-content: center;
     align-items: center;
     margin: 150px 0;
+    flex-wrap: wrap;
 }
 
 #aboutSect img{
-    max-width: 500px;
-    max-height: 400px;
-    margin: 38px;
+    max-width: 35%;
+    margin: 11px;
+
 }
 
+
 #aboutblock {
-    min-height: 400px;
-    width: 50%;
+    max-width: 400px;
+    padding: 9px;
 }
 
 
