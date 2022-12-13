@@ -22,3 +22,13 @@ function changeColor() {
 }
 
 window.addEventListener("scroll",changeColor) ;
+
+
+const projects = document.querySelectorAll(".projectBox") ;
+
+projects.forEach(divBox => {
+    const data = divBox.querySelector("a") ;
+    divBox.addEventListener("click", () => {
+        data.click() ;
+    })
+});
