@@ -107,7 +107,7 @@ ul#ul-link a:hover {
     top: 0;
     height: 100%;
     width: 100%;
-    background: url("../images/profilepic.jpg") no-repeat center center/cover;
+    background: url("../images/profilepicsmall.jpg") no-repeat center center/cover;
     opacity: 0.86;
     z-index: -1;
 }

@@ -1,13 +1,15 @@
 let strArr = ["Developer","Student","Engineer"] ;
 let i=0;
 document.addEventListener("DOMContentLoaded",()=>{
-    setInterval(() => {
-        document.getElementById("homeDev").innerText = strArr[i] ;
-        i++;
-        if (i>=3){
-            i=0;
-        }
-    }, 500);
+    if (document.getElementById("homeDev") !=null){
+        setInterval(() => {
+            document.getElementById("homeDev").innerText = strArr[i] ;
+            i++;
+            if (i>=3){
+                i=0;
+            }
+        }, 500);
+    }
 })
 
 function changeColor() {
