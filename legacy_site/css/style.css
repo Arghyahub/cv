@@ -1,0 +1,373 @@
+/*  Fonts I will use later
+font-family: 'Merriweather', serif;
+font-family: 'Montserrat', sans-serif;
+font-family: 'Sacramento', cursive; 
+*/
+
+/* #F54748 */
+
+.whiteBg {
+    transition: ease-in-out 700ms;
+    background: white;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+h1 {
+    font-family: 'Merriweather', serif;
+}
+p {
+    font-family: 'Montserrat', sans-serif;
+}
+
+a {
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style: none;
+}
+
+#navbar {
+    /* border: 2px solid #F54748; */
+    color: white;
+    display: flex;
+    position: sticky;
+    top: 0;
+    align-items: center;
+}
+
+ul#ul-link {
+    display: flex;
+    position: absolute;
+    right: 0;
+    padding: 0.1rem;
+    margin-right: 1vw;
+}
+ul#ul-link li {
+    margin: 1vw;
+}
+
+ul#ul-link a {
+    /* border: 2px solid blue; */
+    /* background-color: white; */
+    font-weight: 900;
+    font-size: 1.2rem;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    border-radius: 10px;
+    color: black;
+}
+
+ul#ul-link a:hover {
+    transition-timing-function: ease-in;
+    transition-duration: 300ms;
+    color: #F54748;
+}
+
+#navlogo {
+    margin: 4px;
+    padding: 0;
+}
+#navlogo img {
+    max-height: 45px;
+    max-width: 45px;
+    border-radius: 5px;
+}
+
+.clickables #proj {
+    padding: 0.5rem 0.7rem;
+}
+.clickables #cnt {
+    padding: 0.5rem 0.8rem;
+}
+
+
+/* Home page section */
+
+#homeSect {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+    /* border: 2px solid black; */
+    text-align: center;
+}
+
+#homeSect::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background: url("../images/profilepicsmall.jpg") no-repeat center center/cover;
+    opacity: 0.86;
+    z-index: -1;
+}
+
+#homeText {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    top: -140px;
+}
+
+#homeMain  {
+    margin: 8px 0;
+    font-size: 1.2rem;
+    color: white;
+}
+#homeNote {
+    margin: 8px 0;
+    font-size: 1rem;
+    color: white;
+    max-width: 478px;
+}
+#homeDev {
+    margin: 15px 0;
+    font-size: 1.5rem;
+}
+
+/*     About      */
+
+
+#aboutSect {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10vw 0;
+    flex-wrap: wrap;
+    /* border: 2px solid green; */
+}
+
+#aboutSect img{
+    margin: 11px;
+    min-height: 262px;
+    max-width: 35%;
+    min-width: 298px;
+    border-radius: 10px;
+}
+
+
+#aboutblock {
+    max-width: 400px;
+    padding: 9px;
+}
+
+
+/*  MEDIA QUERY FOR IMAGE */
+
+@media (max-width: 738px) {
+    #aboutSect img{
+        max-width: 68%;
+        margin: 11px;
+        min-width: none;
+    
+    }
+}
+
+/* ABOUT BOX */
+
+#aboutMe {
+    color: #F54748 ;
+}
+
+#getCv {
+    background-color: #F54748 ;
+    padding: 13px 23px;
+    border-radius: 50px;
+    margin: 20px 0px;
+    border: 0;
+    font-size: 1rem;
+}
+
+#getCv:hover {
+    transition: ease-in 600ms;
+    background-color: #86fd32;
+}
+#getCv:hover a {
+    color: black;
+}
+
+#getCv a {
+    text-decoration: none;
+    color: white;
+}
+
+
+
+/*      Skills section */
+
+#skillSect {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    /* border: 2px solid green; */
+    padding: 10vw 0;
+    background-color: #ebf4f5;
+}
+
+#skillHead {
+    margin: 25px 0;
+}
+
+.skillBox {
+    width: 250px;
+    height: 100px;
+    /* border: 0.5px solid red; */
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    margin: 10px;
+    background-color: white;
+}
+
+#skillDiv {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.sImgD {
+    border-radius: 50%;
+    margin: 0 5px 0 15px;
+    padding: 10px;
+    box-shadow: 0 0 14px -5px rgb(0 0 0 / 13%);
+}
+
+.skillBox img {
+    height: 40px;
+    width: 40px;
+    /* background-color: red; */
+    /* border: 1px solid green; */
+    filter: invert(48%) sepia(74%) saturate(4804%) hue-rotate(332deg) brightness(93%) contrast(105%);
+}
+
+.skillBox:hover .sImgD {
+    background-color: #F54748 ;
+    transition: ease-in 200ms;
+    opacity: 0.8;
+}
+
+.skillBox:hover img {
+    filter: none;
+}
+
+/*          Project Section      */
+
+#projectSect {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5vw 0 9vw 0;
+}
+
+div#top4Proj {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.projectBox {
+    width: 305px;
+    height: 210px;
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: rgb(231, 253, 245);
+    border-radius: 10px;
+    border: 3px solid  rgb(231, 253, 245);
+}
+
+.projectBox:hover {
+    border: 3px solid aquamarine;
+}
+
+.projectBox img {
+    width: 248px;
+    height: 157px;
+    padding: 5px;
+}
+
+#projectHead {
+    margin: 0 0 6vw 0;
+    font-size: 2rem;
+}
+
+#projEnd {
+    font-size: 1.2rem;
+    margin: 5vw 0;
+}
+
+/*      Contact Section      */
+
+#contactSect {
+    background: rgb(126, 126, 126);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 4vw 0;
+}
+
+#thanksLogo {
+    height: 70px;
+    width: 69px;
+}
+
+#contactSect p {
+    color: white;
+    margin: 0 4vw;
+}
+
+
+#socialmedia {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#socialmedia img {
+    height: 40px;
+    width: 40px;
+    padding: 10px;
+}
+
+.smbox {
+    margin: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.smbox a {
+    text-decoration: none;
+    color: rgb(127, 200, 255);
+}
+
+/*      Footer       */
+
+footer {
+    display: flex;
+    justify-content: center;
+    background-color: black;
+    color: white;
+}
+
+
+

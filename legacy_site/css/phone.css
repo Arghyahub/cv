@@ -1,0 +1,46 @@
+ul#ul-link a {
+    font-size: 0.7rem;
+    padding: 0.3rem 0.6rem;
+}
+
+.clickables #proj , .clickables #cnt {
+    padding: 0.3rem 0.4rem;
+}
+
+ul#ul-link li {
+    margin: 0.7vw;
+}
+
+ul#ul-link {
+    margin-right: 0.7vw;
+}
+
+#navlogo {
+    margin: 2px;
+}
+
+#navlogo img {
+    height: 10vw;
+    width: 10vw;
+}
+
+#socialmedia img {
+    height: 35px;
+    width: 35px;
+    padding: 5px;
+}
+
+.smbox a {
+    font-size: 0.8rem;
+}
+
+#aboutSect img {
+    max-width: 80%;
+    margin: 11px;
+    min-width: none;
+}
+
+#aboutblock {
+    max-width: 400px;
+    padding: 9px 9px 9px 12px;
+}
