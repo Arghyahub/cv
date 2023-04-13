@@ -49,7 +49,7 @@ const Projects = () => {
       {/* eslint-disable-next-line */}
         {Projects.map((proj,ind) => {
           if (ind<Limit){
-            return <ProjectCard proj={proj} />
+            return <ProjectCard key={`proj-${ind}`} proj={proj} />
           }
         })}
       </div>

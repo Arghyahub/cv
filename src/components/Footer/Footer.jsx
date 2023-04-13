@@ -30,8 +30,8 @@ const Footer = () => {
     <div id='contact'>
       <h1>Thank you for visiting my site</h1>
       <div className="contact-options">
-        {handels.map((socials) => (
-            <a href={socials.link}><img src={socials.image} alt="logo" /> {socials.name} </a>
+        {handels.map((socials,index) => (
+            <a key={`contact-a${index}`} href={socials.link}><img src={socials.image} alt="logo" /> {socials.name} </a>
         ))}
       </div>
       <p>You can connect to me here</p>
