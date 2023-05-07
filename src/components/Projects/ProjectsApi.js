@@ -1,6 +1,14 @@
 const Category = ["all" , "reactjs" , "mern stack" , "html,css,js"] ;
 const projectApi = [
     {
+        name: "ImageAi",
+        category: "mern stack",
+        image: "images/projects/imageai.jpg",
+        desc: "Ai Art Social media",
+        link: "https://image-ai-arghyahub.vercel.app/",
+        github: "https://github.com/Arghyahub/ImageAi"
+    },
+    {
         name: "Movies App",
         category: "reactjs",
         image: "images/projects/moviesapp.jpg",
