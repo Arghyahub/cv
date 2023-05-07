@@ -1,12 +1,20 @@
 const Category = ["all" , "reactjs" , "mern stack" , "html,css,js"] ;
 const projectApi = [
-    {
+	{
         name: "ImageAi",
         category: "mern stack",
         image: "images/projects/imageai.jpg",
         desc: "Ai Art Social media",
         link: "https://image-ai-arghyahub.vercel.app/",
         github: "https://github.com/Arghyahub/ImageAi"
+    },
+    {
+        name: "CheckIt",
+        category: "mern stack",
+        image: "images/projects/checkit.jpg",
+        desc: "Convert Cheque data to json",
+        link: "https://check-it-arghyahub.vercel.app/",
+        github: "https://github.com/Arghyahub/check-it"
     },
     {
         name: "Movies App",
