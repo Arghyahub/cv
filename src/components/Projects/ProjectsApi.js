@@ -1,6 +1,14 @@
 const Category = ["all" , "reactjs" , "mern stack" , "html,css,js"] ;
 const projectApi = [
 	{
+        name: "The Image Store",
+        category: "mern stack",
+        image: "images/projects/imagestore.jpg",
+        desc: "Personalised Image storing website with CRUD operations, password encryption, cloud storage and many more..",
+        link: "https://arghyadas-dobby.vercel.app/",
+        github: "https://github.com/Arghyahub/arghyadas-dobby"
+    },
+	{
         name: "ImageAi",
         category: "mern stack",
         image: "images/projects/imageai.jpg",
