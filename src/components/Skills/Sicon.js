@@ -2,6 +2,8 @@ const skillName = [
     {name: 'frontend' , image:'/images/skills/frontend.png'}
     ,{name: 'backend' , image:'/images/skills/backend.png'}
     ,{name: 'database', image:'/images/skills/database.png'}
+    ,{name: 'deployment', image:'/images/skills/deployment.png'}
+    ,{name: 'Machine Learning', image:'/images/skills/ml.png'}
 ] ;
 
 const techLearn = [
@@ -26,6 +28,18 @@ const techLearn = [
         name: 'Mongoose'
     },
     {
+        image: '/images/skills/mysql.png',
+        name: 'Sql'
+    },
+    {
+        image: '/images/skills/graphql.png',
+        name: 'Apollo Graphql'
+    },
+    {
+        image: '/images/skills/graphene.png',
+        name: 'Graphene'
+    },
+    {
         image: '/images/skills/html.png',
         name: 'HTML'
     },
@@ -38,12 +52,20 @@ const techLearn = [
         name: 'JavaScript'
     },
     {
+        image: '/images/skills/typescript.png',
+        name: 'TypeScript'
+    },
+    {
         image: '/images/skills/sass.png',
         name: 'Sass'
     },
     {
         image: '/images/skills/c.png',
         name: 'C | C++'
+    },
+    {
+        image: '/images/skills/java.png',
+        name: 'Java'
     },
     {
         image: '/images/skills/python.png',
@@ -56,6 +78,22 @@ const techLearn = [
     {
         image: '/images/skills/linux.png',
         name: 'Linux'
+    },
+    {
+        image: '/images/skills/docker.png',
+        name: 'Docker'
+    },
+    {
+        image: '/images/skills/aws.png',
+        name: 'AWS'
+    },
+    {
+        image: '/images/skills/scikit.jpg',
+        name: 'Scikit Learn'
+    },
+    {
+        image: '/images/skills/tensorflow.png',
+        name: 'Tensor Flow'
     },
 ]
 

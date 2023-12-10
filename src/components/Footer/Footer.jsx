@@ -34,7 +34,7 @@ const Footer = () => {
             <a key={`contact-a${index}`} href={socials.link}><img src={socials.image} alt="logo" /> {socials.name} </a>
         ))}
       </div>
-      <p>You can connect to me here</p>
+      <p>Join me on my journey</p>
     </div>
   )
 }

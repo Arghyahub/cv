@@ -1,5 +1,29 @@
-const Category = ["all" , "reactjs" , "mern stack" , "html,css,js"] ;
+const Category = ["all", "mern stack" , "reactjs" , "html,css,js" , "AiML"] ;
 const projectApi = [
+    {
+        name: "Pushnote",
+        category: "mern stack",
+        image: "images/projects/pushnote.jpg",
+        desc: "Hackathon winning project",
+        link: "https://manageit-frontend.vercel.app/",
+        github: "https://github.com/Arghyahub/Manageit-Frontend"
+    },
+    {
+        name: "House price prediction model",
+        category: "AiML",
+        image: "images/projects/houseprice.jpg",
+        desc: "House price prediction model using linear regression",
+        link: "https://bangalore-house-price.vercel.app/",
+        github: "https://github.com/Arghyahub/BangaloreHousePrice"
+    },
+	{
+        name: "Blue Rooms",
+        category: "mern stack",
+        image: "images/projects/bluerooms.jpg",
+        desc: "Real time chat application with rooms and private chat feature using socket.io and MERN",
+        link: "https://blue-rooms.vercel.app/",
+        github: "https://github.com/Arghyahub/Blue-Rooms"
+    },
 	{
         name: "The Image Store",
         category: "mern stack",
@@ -23,6 +47,14 @@ const projectApi = [
         desc: "Convert Cheque data to json",
         link: "https://check-it-arghyahub.vercel.app/",
         github: "https://github.com/Arghyahub/check-it"
+    },
+    {
+        name: "No code MarkDown Editor",
+        category: "reactjs",
+        image: "images/projects/markdown.jpg",
+        desc: "Click buttons and build beautiful markdowns, fast and efficient way to build markdowns",
+        link: "https://markdown-editor-arghyahub.vercel.app/",
+        github: "https://github.com/Arghyahub/MarkdownEditor"
     },
     {
         name: "Movies App",

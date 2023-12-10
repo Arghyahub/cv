@@ -25,8 +25,9 @@ h1 {
     // background-color: #fff;
     display: flex;
     justify-content: space-around;
-    margin: 2rem 0 4rem 0;
+    margin: 2rem 0 2rem 0;
     font-family: 'Prompt', sans-serif;
+    flex-wrap: wrap;
 
 
 
@@ -39,6 +40,7 @@ h1 {
         border-radius: 0.6rem;
         color: #313bac ;
         box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+        margin-bottom: 1rem;
 
         img {
             width: 20px;
