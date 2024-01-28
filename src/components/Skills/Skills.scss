@@ -12,7 +12,7 @@
     // background-color: #313bac;
 }
 
-h1 {
+h1 , h2 , h3 {
     padding: 1rem 0;
     font-family: 'Montserrat', sans-serif;
 }
@@ -43,8 +43,8 @@ h1 {
         margin-bottom: 1rem;
 
         img {
-            width: 20px;
-            height: 20px;
+            width: 25px;
+            height: 25px;
             padding: 0 0.2rem;
         }
     }
@@ -66,13 +66,13 @@ h1 {
 
 .tech-bar {
     display: flex;
-    flex-wrap: wrap;
-    width: 90%;
+    width: 80%;
     justify-content: center;
     align-items: center;
+    text-align: center;
 
-    div {
-        padding: 1rem;
+    .techdiv {
+        padding: 0.7rem;
         p {
             text-align: center;
             font-family: 'Merriweather', serif;
@@ -89,6 +89,7 @@ h1 {
     align-items: center;
     border-radius: 50%;
     box-shadow: 0 8px 8px -4px lightblue;
+    padding: 0.6rem;
     img {
         width: 80px;
         height: 80px;
@@ -103,4 +104,18 @@ h1 {
             height: 40px;
         }
     }
+}
+
+.togglebtn {
+    color: #313bac;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+
+.allexp {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

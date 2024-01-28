@@ -1,6 +1,6 @@
 import './App.css';
 
-import { Navbar,Header,About,Projects,Skills,Footer } from './components'
+import { Navbar,Header,About,Projects,Skills,Footer,Experience } from './components'
 
 function App() {
   return (
@@ -8,6 +8,7 @@ function App() {
       <Navbar />
       <Header />
       <About />
+      <Experience />
       <Projects />
       <Skills />
       <Footer />

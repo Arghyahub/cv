@@ -48,6 +48,10 @@ const techLearn = [
         name: 'CSS'
     },
     {
+        image: '/images/skills/tailwind.png',
+        name: 'Tailwind'
+    },
+    {
         image: '/images/skills/javascript.png',
         name: 'JavaScript'
     },

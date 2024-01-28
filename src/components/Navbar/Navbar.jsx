@@ -15,7 +15,7 @@ const Navbar = () => {
       </div>
 
       <ul className="navbar-ul">
-        {['home','about','projects','skills','contact'].map((item,index)=>(
+        {['home','about','projects','skills','contact','experience'].map((item,index)=>(
           <a key={`nava${index}`} href={`#${item}`}>
             <li>{item}</li>
           </a>
@@ -34,7 +34,7 @@ const Navbar = () => {
                 
               <HiX onClick={()=> setToggle(false)} />
               <ul>
-                {['home','about','projects','skills','contact'].map((item,index)=>(
+                {['home','about','projects','skills','contact', 'experience'].map((item,index)=>(
                   <li key={`${item}-li-${index}`}>
                       <a href={`#${item}`} onClick={()=> setToggle(false)} >{item}</a>
                   </li>
