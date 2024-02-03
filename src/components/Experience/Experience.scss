@@ -59,6 +59,9 @@
         padding: 0.5rem;
         // background-color: #FF9843;
         background-color: #313bac;
+        @media screen and (max-width: 420px) {
+            padding: 0.3rem;
+        }
     }
 }
 
@@ -83,6 +86,9 @@
         // background-color: #FF9843;
         background-color: #313bac;
         border-bottom: 3px solid white;
+        @media screen and (max-width: 420px) {
+            padding: 0.3rem;
+        }
     }
 
     @media screen and (max-width: 800px) {
@@ -125,6 +131,9 @@
         background-color: #313bac;
         border-bottom: 3px solid white;
         border-radius: 1rem 1rem 0 0;
+        @media screen and (max-width: 420px) {
+            padding: 0.3rem;
+        }
     }
     @media screen and (max-width: 420px) {
         .left {
@@ -136,4 +145,11 @@
             min-width: 100px;
         }
     }
+}
+
+.techdiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
