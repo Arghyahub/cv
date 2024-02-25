@@ -1,0 +1,20 @@
+#home-image {
+  max-width: none;
+}
+
+#about #box {
+  box-shadow: 0 26px 8px -4px lightblue;
+}
+
+@media screen and (max-width: 700px) {
+  #home-image {
+    width: 150% !important;
+    transform: translateX(-17%);
+  }
+}
+@media screen and (max-width: 600px) {
+  #home-image {
+    width: 200% !important;
+    transform: translateX(-25%);
+  }
+}
