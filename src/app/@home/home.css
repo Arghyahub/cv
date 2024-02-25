@@ -3,7 +3,7 @@
 }
 
 #about #box {
-  box-shadow: 0 26px 8px -4px lightblue;
+  box-shadow: 0 20px 8px -4px lightblue;
 }
 
 @media screen and (max-width: 700px) {

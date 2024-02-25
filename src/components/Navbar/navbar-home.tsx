@@ -4,7 +4,15 @@ import Link from "next/link";
 
 const Navbar = () => {
   return (
-    <div className="top-0 z-20 fixed flex flex-row items-center py-3 w-full">
+    <div
+      id="nav-home"
+      style={{
+        backgroundColor: "rgba(255, 255, 255, 0.25)",
+        backdropFilter: "blur(4px)",
+        WebkitBackdropFilter: "blur(4px)",
+      }}
+      className="top-0 z-20 fixed flex flex-row items-center bg-slate-100 py-3 w-full"
+    >
       {/* Logo area */}
       <div id="logo" className="flex flex-row px-3 py-2 h-full">
         <div className="mb-1 w-5 h-5">

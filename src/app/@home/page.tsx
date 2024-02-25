@@ -3,6 +3,9 @@ import Navbar from "@/components/Navbar/navbar-home";
 import Home from "./home";
 import "./home.css";
 import About from "./about";
+import Experience from "./experience";
+import Projects from "./projects";
+import Skills from "./skills";
 
 const page = () => {
   return (
@@ -10,6 +13,9 @@ const page = () => {
       <Navbar />
       <Home />
       <About />
+      <Experience />
+      <Projects />
+      <Skills />
     </div>
   );
 };
