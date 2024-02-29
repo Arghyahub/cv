@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import Sidebar from "./sidebar-home";
 
 const Navbar = () => {
   return (
@@ -36,15 +37,19 @@ const Navbar = () => {
       {/* Nav links */}
       <div
         id="navlinks"
-        className="flex flex-row justify-center items-center gap-6 md:gap-8 lg:gap-10 mr-16 lg:mr-28 w-full h-full text-[#6b7688]"
+        className="md:flex flex-row justify-center items-center gap-6 md:gap-8 lg:gap-10 hidden mr-16 lg:mr-28 w-full h-full text-[#6b7688]"
       >
         <Link href={"#home"}>Home</Link>
         <Link href={"#about"}>About</Link>
         <Link href={"#experience"}>Experience</Link>
         <Link href={"#projects"}>Projects</Link>
         <Link href={"#skills"}>Skills</Link>
-        <Link href={"#blog"}>Blogs</Link>
+        <Link href={"/blog"}>Blogs</Link>
         <Link href={"#contact"}>Contact</Link>
+      </div>
+      {/* Hamburger menu */}
+      <div className="flex md:hidden mr-5 ml-auto">
+        <Sidebar />
       </div>
     </div>
   );
