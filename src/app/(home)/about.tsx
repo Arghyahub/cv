@@ -28,9 +28,12 @@ const About = () => {
             of my life&apos;s true delights.
           </p>
           <div className="mt-auto sm:mt-10">
-            <button className="bg-[#22c8e5] hover:bg-[#f7345e] mt-8 px-4 py-3 rounded-xl font-semibold text-sm text-white md:text-md transition-colors duration-500">
+            <a
+              href="https://drive.google.com/drive/folders/17SyDCCDarNL7szfHtSQhGlm_h-IBmSF9?usp=drive_link"
+              className="bg-[#22c8e5] hover:bg-[#f7345e] mt-8 px-4 py-3 rounded-xl font-semibold text-sm text-white md:text-md transition-colors duration-500"
+            >
               Download Resume
-            </button>
+            </a>
           </div>
         </div>
       </div>

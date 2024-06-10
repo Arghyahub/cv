@@ -5,8 +5,9 @@ const data = [
     title: "Software Developer Engineer Intern",
     company: "Fountane",
     date: "Feb 2024 - Present",
-    description: "Working as a full stack developer on 3d AR app.",
-    tech: "",
+    description: ` Worked full stack developing a Super Admin role, its architecture,
+    implementation. Developed Graphql queries, built complete frontend and integrated both.`,
+    tech: "ReactJs, NextJs, ExpressJs, Graphql, Hasura, PostgreSQL, Sequelize, Docker, AWS",
   },
   {
     emoji: "🔍",
