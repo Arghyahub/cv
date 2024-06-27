@@ -30,7 +30,7 @@ const About = () => {
           <div className="flex flex-row justify-center items-end mt-4 w-full h-full">
             <a
               href="https://drive.google.com/drive/folders/17SyDCCDarNL7szfHtSQhGlm_h-IBmSF9?usp=drive_link"
-              className="bg-[#22c8e5] hover:bg-[#f7345e] mx-auto mt-4 px-4 py-3 rounded-xl w-40 font-semibold text-sm text-white md:text-md transition-colors duration-500"
+              className="bg-[#22c8e5] hover:bg-[#f7345e] mx-auto mt-4 px-4 py-3 rounded-xl font-semibold text-sm text-white md:text-md transition-colors duration-500"
             >
               Download Resume
             </a>
