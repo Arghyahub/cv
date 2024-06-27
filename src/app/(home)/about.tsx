@@ -18,7 +18,7 @@ const About = () => {
           alt="About Image"
           className="sm:my-6 rounded-md rounded-tl-xl rounded-bl-xl w-full sm:w-2/5 md:w-2/5 lg:w-1/3 sm:min-w-64 md:min-w-[280px] lg:min-w-72 max-w-none h-auto"
         />
-        <div className="flex flex-col">
+        <div className="flex flex-col lg:my-4">
           <h1 className="mb-2 sm:mb-4 font-semibold text-xl">About me</h1>
           <p>
             I&apos;m originally from Assam, currently persuing Bachelor of
@@ -27,13 +27,14 @@ const About = () => {
             places and sharing a cup of tea with a fascinating stranger is one
             of my life&apos;s true delights.
           </p>
-          <div className="mt-auto sm:mt-10">
+          <div className="flex flex-row justify-center items-end mt-4 w-full h-full">
             <a
               href="https://drive.google.com/drive/folders/17SyDCCDarNL7szfHtSQhGlm_h-IBmSF9?usp=drive_link"
-              className="bg-[#22c8e5] hover:bg-[#f7345e] mt-8 px-4 py-3 rounded-xl font-semibold text-sm text-white md:text-md transition-colors duration-500"
+              className="bg-[#22c8e5] hover:bg-[#f7345e] mx-auto mt-4 px-4 py-3 rounded-xl w-40 font-semibold text-sm text-white md:text-md transition-colors duration-500"
             >
               Download Resume
             </a>
+
           </div>
         </div>
       </div>

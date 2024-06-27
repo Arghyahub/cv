@@ -1,7 +1,7 @@
 const data = [
   {
     emoji: "⚙️",
-    emojiColor: "bg-cyan-300",
+    emojiColor: "bg-[#7efff7]",
     title: "Software Developer Engineer Intern",
     company: "Fountane",
     date: "Feb 2024 - Present",
@@ -11,7 +11,7 @@ const data = [
   },
   {
     emoji: "🔍",
-    emojiColor: "bg-red-500",
+    emojiColor: "bg-[#f97c87]",
     title: "Software Developer Intern",
     company: "Upraised",
     date: "Sept 2023 - Nov 2023",
