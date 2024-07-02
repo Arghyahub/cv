@@ -38,7 +38,7 @@ export default function Sidebar() {
         <div className="flex flex-col mt-2 w-full">
           <SheetClose asChild>
             <Link
-              href={"#home"}
+              href={"/#home"}
               className="flex flex-row items-center hover:bg-neutral-200 py-5 pl-2 rounded-lg w-full hover:font-semibold cursor-pointer"
             >
               <Home /> <p className="ml-4">Home</p>
@@ -46,7 +46,7 @@ export default function Sidebar() {
           </SheetClose>
           <SheetClose asChild>
             <Link
-              href={"#about"}
+              href={"/#about"}
               className="flex flex-row items-center hover:bg-neutral-200 py-5 pl-2 rounded-lg w-full hover:font-semibold cursor-pointer"
             >
               <UserRound /> <p className="ml-4">About</p>
@@ -55,7 +55,7 @@ export default function Sidebar() {
 
           <SheetClose asChild>
             <Link
-              href={"#experience"}
+              href={"/#experience"}
               className="flex flex-row items-center hover:bg-neutral-200 py-5 pl-2 rounded-lg w-full hover:font-semibold cursor-pointer"
             >
               <Wrench /> <p className="ml-4">Experience</p>
@@ -63,7 +63,7 @@ export default function Sidebar() {
           </SheetClose>
           <SheetClose asChild>
             <Link
-              href={"#projects"}
+              href={"/#projects"}
               className="flex flex-row items-center hover:bg-neutral-200 py-5 pl-2 rounded-lg w-full hover:font-semibold cursor-pointer"
             >
               <Paperclip /> <p className="ml-4">Projects</p>
@@ -71,7 +71,7 @@ export default function Sidebar() {
           </SheetClose>
           <SheetClose asChild>
             <Link
-              href={"#skills"}
+              href={"/#skills"}
               className="flex flex-row items-center hover:bg-neutral-200 py-5 pl-2 rounded-lg w-full hover:font-semibold cursor-pointer"
             >
               <Brain /> <p className="ml-4">Skills</p>
@@ -87,7 +87,7 @@ export default function Sidebar() {
           </SheetClose>
           <SheetClose asChild>
             <Link
-              href={"#contact"}
+              href={"/#contact"}
               className="flex flex-row items-center hover:bg-neutral-200 py-5 pl-2 rounded-lg w-full hover:font-semibold cursor-pointer"
             >
               <Contact /> <p className="ml-4">Contact</p>

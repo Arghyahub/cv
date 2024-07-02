@@ -39,13 +39,13 @@ const Navbar = () => {
         id="navlinks"
         className="md:flex flex-row justify-center items-center gap-6 md:gap-8 lg:gap-10 hidden mr-16 lg:mr-28 w-full h-full text-[#6b7688]"
       >
-        <Link href={"#home"}>Home</Link>
-        <Link href={"#about"}>About</Link>
-        <Link href={"#experience"}>Experience</Link>
-        <Link href={"#projects"}>Projects</Link>
-        <Link href={"#skills"}>Skills</Link>
+        <Link href={"/#home"}>Home</Link>
+        <Link href={"/#about"}>About</Link>
+        <Link href={"/#experience"}>Experience</Link>
+        <Link href={"/#projects"}>Projects</Link>
+        <Link href={"/#skills"}>Skills</Link>
         <Link href={"/blog"}>Blogs</Link>
-        <Link href={"#contact"}>Contact</Link>
+        <Link href={"/#contact"}>Contact</Link>
       </div>
       {/* Hamburger menu */}
       <div className="flex md:hidden mr-5 ml-auto">

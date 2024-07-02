@@ -1,4 +1,18 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {};
+import remarkGfm from "remark-gfm";
+import createMDX from "@next/mdx";
+import rehypeSlug from "rehype-slug";
 
-export default nextConfig;
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  // Configure `pageExtensions` to include MDX files
+  pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
+  // Optionally, add any other Next.js config below
+};
+const withMDX = createMDX({
+  options: {
+    remarkPlugins: [remarkGfm],
+    rehypePlugins: [rehypeSlug],
+  },
+});
+
+export default withMDX(nextConfig);
