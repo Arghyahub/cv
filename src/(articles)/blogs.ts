@@ -2,7 +2,7 @@ export interface BlogType {
   title: string;
   date: string;
   path: string;
-  sectionIds: string[];
+  desc: string;
 }
 
 export interface BlogListType {
@@ -18,36 +18,7 @@ const allBlogs: BlogListType[] = [
         title: "react-hooks",
         date: "2021-01-01",
         path: "love-me-thora.mdx",
-        sectionIds: ["react-hooks-1", "react-hooks-2"],
-      },
-      {
-        title: "react-hooks",
-        date: "2021-01-01",
-        path: "love-me-thora.mdx",
-        sectionIds: ["react-hooks-1", "react-hooks-2"],
-      },
-      {
-        title: "react-hooks",
-        date: "2021-01-01",
-        path: "love-me-thora.mdx",
-        sectionIds: ["react-hooks-1", "react-hooks-2"],
-      },
-    ],
-  },
-  {
-    topic: "react",
-    blogs: [
-      {
-        title: "react-hooks",
-        date: "2021-01-01",
-        path: "love-me-thora.mdx",
-        sectionIds: ["react-hooks-1", "react-hooks-2"],
-      },
-      {
-        title: "react-hooks",
-        date: "2021-01-01",
-        path: "love-me-thora.mdx",
-        sectionIds: ["react-hooks-1", "react-hooks-2"],
+        desc: "This is a blog about react hooks",
       },
     ],
   },

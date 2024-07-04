@@ -5,8 +5,8 @@ import allBlogs, { BlogType } from "@/(articles)/blogs";
 import Link from "next/link";
 import Contents from "../(components)/contents";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import { MDXProps } from "mdx/types";
+import "./mdx.css";
 
 type Props = {
   // content: MDXRemoteSerializeResult<
@@ -29,7 +29,7 @@ type Props = {
   Component: ComponentType<MDXProps>;
 };
 
-const BlogComp = ({ content, data, pagination, heads, Component }: Props) => {
+const BlogComp = ({ data, pagination, heads, Component }: Props) => {
   // const heads = Array.from(content.matchAll(/# (.*)\r/g)).map(
   //   (head) => head[1]
   // );
@@ -39,8 +39,8 @@ const BlogComp = ({ content, data, pagination, heads, Component }: Props) => {
       <Navbar />
       <div className="flex flex-row mt-16 w-full h-[calc(100vh-65px)]">
         <Sidebar />
-        <div className="flex flex-row gap-2 mx-4 py-2 w-full h-[calc(100vh-65px)] overflow-y-auto">
-          <article className="flex flex-col px-2 sm:px-10 md:px-5 py-1 w-full h-full text-xl">
+        <div className="flex flex-row gap-2 py-2 w-full h-[calc(100vh-65px)] overflow-y-auto">
+          <article className="flex flex-col px-4 sm:px-12 md:px-7 py-1 w-full h-full text-xl">
             <div className="flex flex-row flex-wrap justify-between items-center">
               <h1 className="font-semibold text-2xl text-cyan-800 md:text-3xl capitalize">
                 {data.title.replaceAll("-", " ")}
@@ -64,8 +64,8 @@ const BlogComp = ({ content, data, pagination, heads, Component }: Props) => {
                   <ChevronLeft />
                   Prev
                 </p>
-                <p className="text-sm md:text-lg capitalize">
-                  {pagination.prev.title.replaceAll("-", " ")}
+                <p className="text-ellipsis text-sm md:text-lg capitalize whitespace-nowrap overflow-hidden">
+                  {pagination.prev.title}
                 </p>
               </Link>
               <Link
@@ -75,13 +75,13 @@ const BlogComp = ({ content, data, pagination, heads, Component }: Props) => {
                 <p className="flex flex-row items-center font-medium">
                   Next <ChevronRight />
                 </p>
-                <p className="text-sm md:text-lg capitalize">
-                  {pagination.next.title.replaceAll("-", " ")}
+                <p className="text-ellipsis text-sm md:text-lg capitalize whitespace-nowrap overflow-hidden">
+                  {pagination.next.title}
                 </p>
               </Link>
             </div>
           </article>
-          <div className="min-[1100px]:block top-0 sticky hidden p-2">
+          <div className="min-[1100px]:block top-0 sticky hidden p-2 pr-4">
             <Contents heads={heads} />
           </div>
         </div>

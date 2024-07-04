@@ -36,8 +36,8 @@ const page = async ({ params }: Props) => {
 
   const blogData = blogTopic.blogs[blogIdx];
   const content = fs.readFileSync(path.join(BLOGPATH, blogData.path), "utf-8");
-  const heads = Array.from(content.matchAll(/# (.*)\r/g)).map(
-    (head) => head[1]
+  const heads = Array.from(content.matchAll(/# (.*)\r/g)).map((head) =>
+    head[1].toLowerCase().replaceAll(" ", "-")
   );
   const Component = dynamic(() =>
     import(`@/(articles)/${blogData.path}`).catch((err) => {
@@ -71,7 +71,6 @@ const page = async ({ params }: Props) => {
 export function generateStaticParams() {
   const arr: StaticParam[] = [];
   allBlogs.forEach((topic) => {
-    arr.push({ slug: [topic.topic] });
     topic.blogs.forEach((blog) => {
       arr.push({ slug: [topic.topic, blog.title] });
     });
