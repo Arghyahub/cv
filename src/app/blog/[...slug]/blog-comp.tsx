@@ -56,7 +56,7 @@ const BlogComp = ({ data, pagination, heads, Component, pageUrl }: Props) => {
             <div className="min-[1100px]:hidden my-2 mt-4 min-[1100px]:mt-0 rounded-md text-base">
               <Contents title={data.title} heads={heads} />
             </div>
-            <div className="prose-p:my-3 mt-2 prose-figure:mt-3 prose-headings:mt-10 w-full font-monteserrat prose-headings:font-medium prose-h1:text-3xl prose-td:text-center prose lg:prose-lg">
+            <div className="prose-p:my-3 mt-2 prose-figure:mt-3 prose-headings:mt-12 prose-ul:mt-2 w-full font-monteserrat prose-headings:font-medium prose-h1:text-3xl prose-td:text-center prose lg:prose-lg">
               <Component />
             </div>
             <div className="flex flex-row justify-between gap-6 mt-auto py-4 pt-4 w-full">

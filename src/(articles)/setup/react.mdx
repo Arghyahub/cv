@@ -13,6 +13,8 @@ chmod +x react.sh
 ./react.sh
 ```
 
+Or
+
 # Continue with setup
 
 Execute the following commands
@@ -23,7 +25,7 @@ npm create vite@latest .
 
 Once you setup your react project you'll find some files, that you might not need. I generally clean them up
 
-```planetext
+```plaintext
 |-public
 |   |-vite.svg // not req
 |
@@ -63,4 +65,297 @@ And we are done with a clean setup ✨.
 
 # Typescript settings
 
-The setup is done
+The setup is done but if you are using Typescript, you might need to look at you `eslintrc` and `tsconfig` settings.
+
+Here's what I use
+
+```js {17-19} title="eslintrc.cjs" caption="I do not like getting no-unused-vars error, as a warning they are okay to me"
+module.exports = {
+  root: true,
+  env: { browser: true, es2020: true },
+  extends: [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react-hooks/recommended",
+  ],
+  ignorePatterns: ["dist", ".eslintrc.cjs"],
+  parser: "@typescript-eslint/parser",
+  plugins: ["react-refresh"],
+  rules: {
+    "react-refresh/only-export-components": [
+      "warn",
+      { allowConstantExport: true },
+    ],
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "warn",
+    "@typescript-eslint/ban-types": "warn",
+  },
+};
+```
+
+```js {24} title="tsconfig.app.json"
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+
+    /* Linting */
+    "strict": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noFallthroughCasesInSwitch": false
+  },
+  "rules": {
+    "no-unused-vars": false
+  },
+  "include": ["src", "/src/**.ts", "/src/**.tsx"],
+  "exclude": ["node_modules"]
+}
+```
+
+# Important packages
+
+A simple react project alone is not the useful, we typically use external packages to
+make things easy, get great features and improve developer experience.
+
+# Tailwind CSS
+
+[Tailwind CSS](https://tailwindcss.com/) has revolutionized the web development experience.
+It was a headache to assign different class names and ids to html elements and then style them
+in their respective css files. We developers are aren't very efficient in coming up with names and searching them
+in a css file and then thinking why the overflow is occurring blows our mind.
+
+Other than the naming issue faced by most developers, another problem with css was maintaining standardization across the website.
+Writing pixels of media queries, removing default css and what not. Tailwind has made things very easy and introduced
+shorthands for writing css as class names.
+
+Setup tailwind as follows
+
+```sh
+npm install -D tailwindcss@latest postcss@latest autoprefixer@latest
+npx tailwindcss init -p
+```
+
+Update the tailwind config
+
+```js {3} title="tailwind.config.js"
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+};
+```
+
+Then put the tailwind directives into you css file
+
+```css title="index.css or app.css"
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+And your tailwind setup is complete, try it out by writing
+
+```js title="App.jsx" "bg-red-400"
+import "./App.css";
+
+const App = () => {
+  return <div className="bg-red-400">App</div>;
+};
+
+export default App;
+```
+
+Run the app and if your tailwind is correctly configured the `App` background will be red else
+follow the above steps again and don't forget to import the css file `import "./index.css"` .
+
+# React Router
+
+[React Router](https://reactrouter.com/en/main) is by far the most import react package, it helps us creates different
+routes and manage them seamlessly, it also provides us with hooks to navigate between routes, get current route
+and many more.
+
+Install react router like this:
+
+```sh
+npm install react-router
+```
+
+Use it like this
+
+```js title="App.jsx" {6-12,21}
+import { createBrowserRouter, Link, RouterProvider } from "react-router-dom";
+import "./App.css";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: (
+      <div>
+        <p>Home</p>
+        <Link to="/test">Go to Test</Link>
+      </div>
+    ),
+  },
+  {
+    path: "/test",
+    element: <div>Test</div>,
+  },
+]);
+
+const App = () => {
+  return <RouterProvider router={router} />;
+};
+
+export default App;
+```
+
+# Zustand
+
+[Zustand](https://zustand-demo.pmnd.rs/) has become my go-to state management library, it is very simple to use and
+very light. Previously I used Recoil but Facebook stopped maintaining it and seriously no one likes to write context api or redux.
+
+Install zustand like this
+
+```sh
+npm install zustand
+```
+
+# Shadcn UI
+
+[Shadcn UI](https://ui.shadcn.com/) has become my go to UI library, it is very simple to use and you get the access to
+the component code, so you can customize it how ever you want. You have the full creativity and control over it.
+
+Install shadcn with vite is a little complicated, shadcn is primarily works well with [Nextjs](https://nextjs.org/)
+but I have found solutions to make it work with vite.
+
+<br />
+**Pre-requisites**
+
+- You must have [tailwind](#tailwind-css) installed
+
+Then add these lines into your `tsconfig.json`
+
+```json {2-7} title="tsconfig.json"
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "files": [],
+  "references": [
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ]
+}
+```
+
+Also add the options into your `tsconfig.app.json`
+
+```json {4-7} title="tsconfig.app.json"
+{
+  "compilerOptions": {
+    /* Resolve path */
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+
+    "composite": true,
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+    "jsx": "react-jsx",
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": ["src"]
+}
+```
+
+Install types/node
+
+```sh
+npm i -D @types/node
+```
+
+Edit the `vite.config` file
+
+```ts title="vite.config.ts" {3,8-11}
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import path from "path";
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [react()],
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+    },
+  },
+});
+```
+
+Now install shadcn
+
+```sh
+npx shadcn-ui@latest init
+```
+
+These are the options that I select
+
+```plaintext {4} title="line-4 is Important"
+√ Would you like to use TypeScript (recommended)? ... no / yes
+√ Which style would you like to use? » Default
+√ Which color would you like to use as base color? » Slate
+√ Where is your global CSS file? ... src/index.css
+√ Would you like to use CSS variables for colors? ... no / yes
+√ Are you using a custom tailwind prefix eg. tw-? (Leave blank if not) ...
+√ Where is your tailwind.config.js located? ... tailwind.config.js
+√ Configure the import alias for components: ... @/components
+√ Configure the import alias for utils: ... @/lib/utils
+√ Are you using React Server Components? ... no / yes
+√ Write configuration to components.json. Proceed? ... yes
+```
+
+Your setup is complete now you can install any shadcn component using the cli and directly copy paste code.
+
+<br />
+The setup is complete, this is how I setup my react projects and I hope you find
+it useful ✨.

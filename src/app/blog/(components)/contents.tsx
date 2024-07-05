@@ -21,7 +21,7 @@ const Contents = ({ heads, title }: Props) => {
               href={`#${head.replaceAll(" ", "-")}`}
               className="hover:underline capitalize"
             >
-              {head}
+              {head.replaceAll("-", " ")}
             </a>
           </li>
         ))}
