@@ -1,0 +1,66 @@
+This is an how I like to setup my react project. I generally like to use [vite](https://vitejs.dev/)
+its faster and than create-react-app and has a much cleaner setup.
+
+If you are a bit lazy like me, download my [script](https://github.com/Arghyahub/SCRIPTS/tree/main/react) and execute it.
+
+Or
+
+Execute the following code :
+
+```sh
+wget -O react.sh https://raw.githubusercontent.com/Arghyahub/SCRIPTS/main/react/react.sh
+chmod +x react.sh
+./react.sh
+```
+
+# Continue with setup
+
+Execute the following commands
+
+```sh title="To create vite app and current folder"
+npm create vite@latest .
+```
+
+Once you setup your react project you'll find some files, that you might not need. I generally clean them up
+
+```planetext
+|-public
+|   |-vite.svg // not req
+|
+|-src
+|   |-assets // not req
+```
+
+Run this code to remove them
+
+```sh
+rm public/vite.svg
+rm -r src/assets
+```
+
+The css files such as Index.css and App.css will have some default styles. We don't require that
+
+```sh
+echo > src/App.css
+echo > src/index.css
+```
+
+Finally clean App.tsx or App.jsx files with some `tsrafce` or `rafce`
+
+```js title="Paste this into your App.jsx or App.tsx"
+import "./App.css";
+
+const App = () => {
+  return <div>App</div>;
+};
+
+export default App;
+```
+
+Don't forget the edit the favicon in html file
+
+And we are done with a clean setup ✨.
+
+# Typescript settings
+
+The setup is done

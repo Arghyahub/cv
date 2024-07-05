@@ -1,3 +1,4 @@
+import path from "path";
 export interface BlogType {
   title: string;
   date: string;
@@ -12,13 +13,13 @@ export interface BlogListType {
 
 const allBlogs: BlogListType[] = [
   {
-    topic: "react",
+    topic: "setup",
     blogs: [
       {
-        title: "react-hooks",
-        date: "2021-01-01",
-        path: "love-me-thora.mdx",
-        desc: "This is a blog about react hooks",
+        title: "react",
+        desc: "How to setup a reactjs project using vite.",
+        path: "setup/react.mdx",
+        date: "05-07-2024",
       },
     ],
   },

@@ -64,6 +64,7 @@ const page = async ({ params }: Props) => {
       pagination={pagination}
       heads={heads}
       Component={Component}
+      pageUrl={`${blogTopic.topic}/${blogData.title}`}
     />
   );
 };

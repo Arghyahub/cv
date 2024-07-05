@@ -27,9 +27,10 @@ type Props = {
   };
   heads: string[];
   Component: ComponentType<MDXProps>;
+  pageUrl: string;
 };
 
-const BlogComp = ({ data, pagination, heads, Component }: Props) => {
+const BlogComp = ({ data, pagination, heads, Component, pageUrl }: Props) => {
   // const heads = Array.from(content.matchAll(/# (.*)\r/g)).map(
   //   (head) => head[1]
   // );
@@ -38,11 +39,14 @@ const BlogComp = ({ data, pagination, heads, Component }: Props) => {
     <div className="flex flex-col w-full h-screen">
       <Navbar />
       <div className="flex flex-row mt-16 w-full h-[calc(100vh-65px)]">
-        <Sidebar />
+        <Sidebar currentPage={pageUrl} />
         <div className="flex flex-row gap-2 py-2 w-full h-[calc(100vh-65px)] overflow-y-auto">
           <article className="flex flex-col px-4 sm:px-12 md:px-7 py-1 w-full h-full text-xl">
             <div className="flex flex-row flex-wrap justify-between items-center">
-              <h1 className="font-semibold text-2xl text-cyan-800 md:text-3xl capitalize">
+              <h1
+                id={`${data.title}`}
+                className="font-semibold text-2xl text-cyan-800 md:text-3xl capitalize"
+              >
                 {data.title.replaceAll("-", " ")}
               </h1>
               <p className="text-slate-400 text-xs md:text-sm">{data.date}</p>
@@ -50,9 +54,9 @@ const BlogComp = ({ data, pagination, heads, Component }: Props) => {
             {/* <p className="mt-2">{JSON.stringify({ data: content })}</p> */}
             {/* <MDXRemote {...content} /> */}
             <div className="min-[1100px]:hidden my-2 mt-4 min-[1100px]:mt-0 rounded-md text-base">
-              <Contents heads={heads} />
+              <Contents title={data.title} heads={heads} />
             </div>
-            <div className="mt-2 w-full font-monteserrat prose-headings:font-medium prose-h1:text-3xl prose-td:text-center prose lg:prose-lg">
+            <div className="prose-p:my-3 mt-2 prose-figure:mt-3 prose-headings:mt-10 w-full font-monteserrat prose-headings:font-medium prose-h1:text-3xl prose-td:text-center prose lg:prose-lg">
               <Component />
             </div>
             <div className="flex flex-row justify-between gap-6 mt-auto py-4 pt-4 w-full">
@@ -82,7 +86,7 @@ const BlogComp = ({ data, pagination, heads, Component }: Props) => {
             </div>
           </article>
           <div className="min-[1100px]:block top-0 sticky hidden p-2 pr-4">
-            <Contents heads={heads} />
+            <Contents title={data.title} heads={heads} />
           </div>
         </div>
       </div>
