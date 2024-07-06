@@ -1,11 +1,9 @@
 import React from "react";
-import path from "path";
-import fs from "fs";
-import { serialize } from "next-mdx-remote/serialize";
+// import path from "path";
+// import fs from "fs";
 
 import allBlogs, { BlogListType, BlogType } from "@/(articles)/blogs";
-import { notFound, redirect } from "next/navigation";
-import BLOGPATH from "@/(articles)/utils";
+import { notFound } from "next/navigation";
 import BlogComp from "./blog-comp";
 import dynamic from "next/dynamic";
 
