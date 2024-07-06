@@ -1,11 +1,12 @@
+import { BlogType } from "@/(articles)/blogs";
 import React from "react";
 
 type Props = {
-  heads: string[];
   title: string;
+  blogData: BlogType;
 };
 
-const Contents = ({ heads, title }: Props) => {
+const Contents = ({ title, blogData }: Props) => {
   return (
     <div className="flex flex-col border-cyan-500 bg-cyan-100 px-4 py-2 border rounded-md w-full min-w-64 sm:min-w-72 text-cyan-700">
       <p className="font-semibold text-lg">Contents</p>
@@ -15,13 +16,10 @@ const Contents = ({ heads, title }: Props) => {
             {title.replaceAll("-", " ")}
           </a>
         </li>
-        {heads.map((head, index) => (
+        {blogData.contents.map((head, index) => (
           <li key={index} className="ml-2">
-            <a
-              href={`#${head.replaceAll(" ", "-")}`}
-              className="hover:underline capitalize"
-            >
-              {head.replaceAll("-", " ")}
+            <a href={`#${head}`} className="hover:underline capitalize">
+              {head}
             </a>
           </li>
         ))}

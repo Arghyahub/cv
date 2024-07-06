@@ -25,12 +25,11 @@ type Props = {
       link: string;
     };
   };
-  heads: string[];
   Component: ComponentType<MDXProps>;
   pageUrl: string;
 };
 
-const BlogComp = ({ data, pagination, heads, Component, pageUrl }: Props) => {
+const BlogComp = ({ data, pagination, Component, pageUrl }: Props) => {
   // const heads = Array.from(content.matchAll(/# (.*)\r/g)).map(
   //   (head) => head[1]
   // );
@@ -54,11 +53,13 @@ const BlogComp = ({ data, pagination, heads, Component, pageUrl }: Props) => {
             {/* <p className="mt-2">{JSON.stringify({ data: content })}</p> */}
             {/* <MDXRemote {...content} /> */}
             <div className="min-[1100px]:hidden my-2 mt-4 min-[1100px]:mt-0 rounded-md text-base">
-              <Contents title={data.title} heads={heads} />
+              <Contents title={data.title} blogData={data} />
             </div>
             <div className="prose-p:my-3 mt-2 prose-figure:mt-3 prose-headings:mt-12 prose-ul:mt-2 w-full prose-code:max-w-[calc(100vw-670px)] font-monteserrat prose-headings:font-medium prose-h1:text-3xl prose-td:text-center prose lg:prose-lg">
               <Component />
             </div>
+
+            {/* Navigation */}
             <div className="flex flex-row justify-between gap-6 mt-auto py-4 pt-4 w-full">
               <Link
                 href={pagination.prev.link}
@@ -86,7 +87,7 @@ const BlogComp = ({ data, pagination, heads, Component, pageUrl }: Props) => {
             </div>
           </article>
           <div className="min-[1100px]:block top-0 sticky hidden p-2 pr-4">
-            <Contents title={data.title} heads={heads} />
+            <Contents title={data.title} blogData={data} />
           </div>
         </div>
       </div>

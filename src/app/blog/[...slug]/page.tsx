@@ -36,9 +36,15 @@ const page = async ({ params }: Props) => {
 
   const blogData = blogTopic.blogs[blogIdx];
   const content = fs.readFileSync(path.join(BLOGPATH, blogData.path), "utf-8");
-  const heads = Array.from(content.matchAll(/# (.*)\r/g)).map((head) =>
-    head[1].toLowerCase().replaceAll(" ", "-")
-  );
+  if (content && content.length > 0) {
+    const heads = Array.from(content.matchAll(/# (.*)\r/g)).map((head) =>
+      head[1].toLowerCase().replaceAll(" ", "-")
+    );
+    if (heads && heads.length > 0) {
+      blogData.contents = heads;
+      console.log(heads);
+    }
+  }
   const Component = dynamic(() =>
     import(`@/(articles)/${blogData.path}`).catch((err) => {
       return notFound();
@@ -62,7 +68,6 @@ const page = async ({ params }: Props) => {
       content={content}
       data={blogData}
       pagination={pagination}
-      heads={heads}
       Component={Component}
       pageUrl={`${blogTopic.topic}/${blogData.title}`}
     />
