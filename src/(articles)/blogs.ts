@@ -18,7 +18,7 @@ const allBlogs: BlogListType[] = [
     blogs: [
       {
         title: "react",
-        desc: "How to setup a reactjs project using vite.",
+        desc: "How to setup a reactjs project using vite and install other packages like tailwind, zustand, shadcn and react router.",
         path: "setup/react.mdx",
         date: "05-07-2024",
         contents: [

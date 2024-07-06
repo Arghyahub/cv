@@ -35,16 +35,16 @@ const page = async ({ params }: Props) => {
   if (blogIdx == -1) return notFound();
 
   const blogData = blogTopic.blogs[blogIdx];
-  const content = fs.readFileSync(path.join(BLOGPATH, blogData.path), "utf-8");
-  if (content && content.length > 0) {
-    const heads = Array.from(content.matchAll(/# (.*)\r/g)).map((head) =>
-      head[1].toLowerCase().replaceAll(" ", "-")
-    );
-    if (heads && heads.length > 0) {
-      blogData.contents = heads;
-      console.log(heads);
-    }
-  }
+  // const content = fs.readFileSync(path.join(BLOGPATH, blogData.path), "utf-8");
+  // if (content && content.length > 0) {
+  //   const heads = Array.from(content.matchAll(/# (.*)\r/g)).map((head) =>
+  //     head[1].toLowerCase().replaceAll(" ", "-")
+  //   );
+  //   if (heads && heads.length > 0) {
+  //     blogData.contents = heads;
+  //     console.log(heads);
+  //   }
+  // }
   const Component = dynamic(() =>
     import(`@/(articles)/${blogData.path}`).catch((err) => {
       return notFound();
@@ -65,7 +65,6 @@ const page = async ({ params }: Props) => {
 
   return (
     <BlogComp
-      content={content}
       data={blogData}
       pagination={pagination}
       Component={Component}

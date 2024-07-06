@@ -9,11 +9,6 @@ import { MDXProps } from "mdx/types";
 import "./mdx.css";
 
 type Props = {
-  // content: MDXRemoteSerializeResult<
-  //   Record<string, unknown>,
-  //   Record<string, unknown>
-  // >;
-  content: string;
   data: BlogType;
   pagination: {
     prev: {
@@ -63,7 +58,7 @@ const BlogComp = ({ data, pagination, Component, pageUrl }: Props) => {
             <div className="flex flex-row justify-between gap-6 mt-auto py-4 pt-4 w-full">
               <Link
                 href={pagination.prev.link}
-                className="flex flex-col border-cyan-500 bg-cyan-100 px-4 py-2 border rounded-md w-full lg:max-w-52 h-20 text-cyan-700 text-sm md:text-lg"
+                className="flex flex-col border-cyan-500 bg-cyan-100 px-4 py-2 border rounded-md w-full max-w-[45%] lg:max-w-52 h-20 text-cyan-700 text-sm md:text-lg"
               >
                 <p className="flex flex-row items-center -ml-2 font-medium">
                   <ChevronLeft />
@@ -75,7 +70,7 @@ const BlogComp = ({ data, pagination, Component, pageUrl }: Props) => {
               </Link>
               <Link
                 href={pagination.next.link}
-                className="flex flex-col border-cyan-500 bg-cyan-100 px-4 py-2 border rounded-md w-full lg:max-w-52 h-20 text-cyan-700 text-sm md:text-lg"
+                className="flex flex-col border-cyan-500 bg-cyan-100 px-4 py-2 border rounded-md w-full max-w-[45%] lg:max-w-52 h-20 text-cyan-700 text-sm md:text-lg"
               >
                 <p className="flex flex-row items-center font-medium">
                   Next <ChevronRight />
