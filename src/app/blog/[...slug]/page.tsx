@@ -6,6 +6,7 @@ import allBlogs, { BlogListType, BlogType } from "@/(articles)/blogs";
 import { notFound } from "next/navigation";
 import BlogComp from "./blog-comp";
 import dynamic from "next/dynamic";
+import BLOGPATH from "@/(articles)/utils";
 
 type Props = {
   params: {

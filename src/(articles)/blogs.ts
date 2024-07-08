@@ -1,4 +1,3 @@
-import path from "path";
 export interface BlogType {
   title: string;
   date: string;
@@ -18,7 +17,7 @@ const allBlogs: BlogListType[] = [
     blogs: [
       {
         title: "react",
-        desc: "How to setup a reactjs project using vite and install other packages like tailwind, zustand, shadcn and react router.",
+        desc: "How to setup a reactjs project in javascript or typescript using vite and setup tailwind, zustand, shadcn and react router.",
         path: "setup/react.mdx",
         date: "05-07-2024",
         contents: [
@@ -29,6 +28,20 @@ const allBlogs: BlogListType[] = [
           "react-router",
           "zustand",
           "shadcn-ui",
+        ],
+      },
+      {
+        title: "express",
+        desc: "How to setup an express project in javascript or typescript and setup mongoDB, Prisma and Graphql.",
+        path: "setup/express.mdx",
+        date: "08-07-2024",
+        contents: [
+          "continue-installation",
+          "typescript",
+          "configuring-orms",
+          "mongoose",
+          "prisma",
+          "conclusion",
         ],
       },
     ],

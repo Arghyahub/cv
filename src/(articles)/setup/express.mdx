@@ -1,0 +1,177 @@
+[ExpressJs](https://expressjs.com/) is a minimal and flexible Node.js web application framework
+that is minimal, lightweight and easy to use.
+Express has made it easy to write backend and build REST API's code in JavaScript.
+
+If you are lazy like me, you can directly download my script from [here](https://github.com/Arghyahub/SCRIPTS/blob/main/express/express.sh)
+
+Or
+
+Run the following code
+
+```sh
+wget -O express.sh https://raw.githubusercontent.com/Arghyahub/SCRIPTS/main/express/express.sh
+chmod +x express.sh
+./express.sh
+```
+
+Or
+
+# Continue Installation
+
+Make sure you have [nodejs](https://nodejs.org/en) installed.
+
+Follow the steps
+
+```sh {2}
+npm init
+npm install express cors dotenv
+mkdir src
+touch src/app.js
+```
+
+This is how you can run the server
+
+```js title="src/app.js"
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
+
+dotenv.config();
+const app = express();
+const PORT = process.env.PORT || 5000;
+
+app.use(cors());
+app.use(express.json());
+
+app.get("/", (req, res) => {
+  res.send("Hello from Arghya!");
+});
+
+app.listen(PORT, () => {
+  console.log("Server is running on port", PORT);
+});
+```
+
+Now copy the following code in your `package.json` file
+
+```json {1}
+"scripts": {
+    "build": "npm i",
+    "dev": "nodemon --watch src src/app.js",
+    "start": "node ./src/app.js"
+},
+```
+
+Now run `npm run dev` to start the server in dev mode.
+
+# TypeScript
+
+If you are using TypeScript, you can follow the steps below
+
+```sh {1}
+npm init
+npm install express cors dotenv
+npm install -D typescript ts-node-dev @types/express @types/cors
+mkdir src
+touch src/app.ts
+```
+
+Now setup your `tsconfig.json` file
+
+```json {7}
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "NodeNext",
+    "rootDir": "./src",
+    "moduleResolution": "NodeNext",
+    "outDir": "./dist",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": false,
+    "skipLibCheck": true
+  },
+  "include": ["./src/**/*"]
+}
+```
+
+Now write the app code
+
+```js title="src/app.ts"
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
+
+dotenv.config();
+const app = express();
+const PORT = process.env.PORT || 5000;
+
+app.use(cors());
+app.use(express.json());
+
+app.get("/", (req, res) => {
+  res.send("Hello from Arghya!");
+});
+
+app.listen(PORT, () => {
+  console.log("Server is running on port", PORT);
+});
+```
+
+copy the scripts to your package.json
+
+```json
+"scripts": {
+    "build": "npm i && tsc",
+    "dev": "nodemon --watch src src/app.ts",
+    "start": "node ./dist/app.js"
+},
+```
+
+Now run `npm run dev` to start the server in dev mode.
+
+# Configuring ORMS
+
+An ORM(Object Relational Mapping) is a programming technique for converting data between incompatible
+type systems in object-oriented programming languages.
+
+But I don't want to write Object oriented code in JavaScript. I prefer to write SQL queries.
+
+But listen me out, ORMs are not that bad. They can save you a lot of time and effort.
+
+2 of my favorite ORMS are [Mongoose](https://mongoosejs.com/) for MongoDB
+and [Prisma](https://www.prisma.io/) for SQL based databases.
+[ Honorable Mention: [Sequelize](https://sequelize.org/) ]
+
+# Mongoose
+
+[Mongoose](https://mongoosejs.com/) is pretty easy to use and MongoDB's best part is its mostly free and easy to work with.
+
+Just run
+
+```bash
+npm install mongoose
+```
+
+# Prisma
+
+Prisma's models, relation patterns and queries are very easy to use and understand.
+
+Just run
+
+```bash
+npm install prisma
+npx prisma init
+npm install @prisma/client
+```
+
+# Conclusion
+
+You are mostly done with setting up express. I used to think backend is just writing routes
+fetching data from database and sending it to the client. But it's more than that.
+You have to think about security, performance, scalability and a lot more.
+
+After joining a company, I have worked more on designing databases, integrating with third party services(with
+poor documentation), dockerizing the app. I have learned a lot and I am still learning.
+
+Thank you for reading this article. I hope it helps 🙏.
