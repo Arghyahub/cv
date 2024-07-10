@@ -26,7 +26,7 @@ const SubscribeEmail = ({ styleTw = "" }: Props) => {
     try {
       const email = e.target.email.value;
       const res = await fetch(
-        "https://my-server-e38q.onrender.com/blog/subscribe",
+        "https://my-server-tau.vercel.app/blog/subscribe",
         {
           method: "POST",
           headers: {
