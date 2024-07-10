@@ -7,6 +7,8 @@ import Contents from "../(components)/contents";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { MDXProps } from "mdx/types";
 import "./mdx.css";
+import SubscribeEmail from "../(components)/subscribe-email";
+import BuyMeCoffee from "../(components)/buy-me-coffee";
 
 type Props = {
   data: BlogType;
@@ -35,7 +37,7 @@ const BlogComp = ({ data, pagination, Component, pageUrl }: Props) => {
       <div className="flex flex-row mt-16 w-full h-[calc(100vh-65px)]">
         <Sidebar currentPage={pageUrl} />
         <div className="flex flex-row gap-2 py-2 w-full h-[calc(100vh-65px)] overflow-y-auto">
-          <article className="flex flex-col px-4 sm:px-12 md:px-7 py-1 w-full h-full text-xl">
+          <div className="flex flex-col px-4 sm:px-12 md:px-7 py-1 w-full h-full text-xl">
             <div className="flex flex-row flex-wrap justify-between items-center">
               <h1
                 id={`${data.title}`}
@@ -50,8 +52,15 @@ const BlogComp = ({ data, pagination, Component, pageUrl }: Props) => {
             <div className="min-[1100px]:hidden my-2 mt-4 min-[1100px]:mt-0 rounded-md text-base">
               <Contents title={data.title} blogData={data} />
             </div>
-            <div className="prose-p:my-3 mt-2 prose-figure:mt-3 prose-headings:mt-12 prose-ul:mt-2 w-full prose-code:max-w-[calc(100vw-670px)] font-monteserrat prose-headings:font-medium prose-h1:text-3xl prose-td:text-center prose lg:prose-lg">
+            <article className="prose-p:my-3 mt-2 prose-figure:mt-3 prose-headings:mt-12 prose-ul:mt-2 w-full 2xl:max-w-[80ch] 4xl:max-w-none prose-code:max-w-[calc(100vw-670px)] font-monteserrat prose-headings:font-medium prose-h1:text-3xl prose-td:text-center prose lg:prose-lg">
               <Component />
+            </article>
+
+            <div className="min-[1100px]:hidden min-[1100px]:mt-0 mb-2 rounded-md text-base">
+              <div className="flex flex-col gap-3">
+                <BuyMeCoffee />
+                <SubscribeEmail />
+              </div>
             </div>
 
             {/* Navigation */}
@@ -80,9 +89,11 @@ const BlogComp = ({ data, pagination, Component, pageUrl }: Props) => {
                 </p>
               </Link>
             </div>
-          </article>
-          <div className="min-[1100px]:block top-0 sticky hidden p-2 pr-4">
+          </div>
+          <div className="top-0 sticky min-[1100px]:flex flex-col hidden p-2 pr-4">
             <Contents title={data.title} blogData={data} />
+            <SubscribeEmail />
+            <BuyMeCoffee />
           </div>
         </div>
       </div>

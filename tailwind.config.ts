@@ -35,6 +35,10 @@ const config = {
       fontFamily: {
         monteserrat: ["Montserrat", "sans-serif"],
       },
+      screens: {
+        "3xl": "1600px",
+        "4xl": "1800px",
+      },
     },
   },
   plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
