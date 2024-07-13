@@ -16,7 +16,7 @@ It creates a virtual DOM in memory and compares it with the actual DOM to update
 Its easier and faster to manipulate javascript objects than the actual DOM.
 
 React uses a component based architecture and the components are written in JSX or
-Javascript XML a syntax extension of javascript.
+Javascript XML a syntax extension of javascript. Browsers do not understand JSX thus transpiler are used to convert JSX to javascript.
 
 it looks like this
 
@@ -41,7 +41,7 @@ const appElement = {
   type: "div", // describes type of element
   ref: null, // reference to the actual DOM node
   key: null, // unique key for the element
-  $$typeof: Symbol.for("react.element"), // important security feature
+  "$$typeof": Symbol.for("react.element"), // important security feature
   props: {
     children: [
       {
@@ -112,21 +112,101 @@ find the minimum number of operations required to transform the old tree into th
 
 Say you changed the layout from
 
-<div className="flex flex-row w-full">
 ```jsx
-// A
-<ul>
-    <li>One</li>
-    <li>Two</li>
-</ul>
-```
-
-```jsx
-// B
+// Before
 <ul>
   <li>One</li>
   <li>Two</li>
 </ul>
 ```
 
-</div>
+```jsx {5}
+// After
+<ul>
+  <li>One</li>
+  <li>Two</li>
+  <li>Three</li>
+</ul>
+```
+
+What happens is react checks the elements and sees oh `One` matches lets not touch that, `Two` matches
+lets not touch that, but `Three` is new lets add that to the DOM.
+
+Simple right?
+
+#### Lets look at another example
+
+```jsx
+// Before
+<ul>
+  <li>One</li>
+  <li>Two</li>
+</ul>
+```
+
+```jsx {3}
+// After
+<ul>
+  <li>Zero</li>
+  <li>One</li>
+  <li>Two</li>
+</ul>
+```
+
+React goes like, Hmm `Zero` doesn't match with `One` Lets change that, `One` doesn't match with `Two`
+lets change that too, `Two` doesn't exist here lets add that. React doesn't know that `One` and `Two` are same.
+
+It has to be updated 3 times, but why? I only changed 1 element, can I make it more efficient?
+
+Yes you can, by adding a `key` to the elements. React uses the key to identify the elements and update only the changed parts.
+
+#### Using keys
+
+```jsx
+// Before
+<ul>
+  <li key="one">One</li>
+  <li key="two">Two</li>
+</ul>
+```
+
+```jsx {3}
+// After
+<ul>
+  <li key="zero">Zero</li>
+  <li key="one">One</li>
+  <li key="two">Two</li>
+</ul>
+```
+
+So now react compares, woah the elements with keys `one` and `two` are same, lets not touch them,
+but `zero` is new lets add that.
+
+Thats the difference between [Reconciliation with keys](/blog/react/how-reactJs-works#lets-look-at-another-example)
+and [Reconciliation without keys](/blog/react/how-reactJs-works#using-keys).
+
+Lets look another example, When mapping over items in an array we often put the key as the index.
+
+```jsx
+data.map((item, index) => (
+    <li key={index}>{item.name}</li>
+));
+```
+
+While this works, its not recommended to use the index as the key because if the array changes the index changes.
+So even if you have the same set of elements, React will update the DOM because the key has changed.
+
+Whats recommended if possible is to use a unique identifier as the key.
+
+```jsx
+data.map((item, index) => (
+    <li key={item.id}>{item.name}</li>
+));
+```
+
+If that feels interesting you can read more about [Stack and Fiber Reconciler](https://medium.com/the-tech-collective/react-fiber-a-tale-of-two-reconcilers-8e1d2cfeb2b2)
+and why we moved from Stack Reconciler to Fiber Reconciler.
+
+Thats it, Now you know how React works. Hope you have learned something new today. Thank you for reading.
+
+Adios Amigos 👋.

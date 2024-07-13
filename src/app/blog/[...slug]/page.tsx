@@ -1,6 +1,6 @@
 import React from "react";
-import path from "path";
-import fs from "fs";
+// import path from "path";
+// import fs from "fs";
 
 import allBlogs, { BlogListType, BlogType } from "@/(articles)/blogs";
 import { notFound } from "next/navigation";
@@ -34,16 +34,18 @@ const page = async ({ params }: Props) => {
   if (blogIdx == -1) return notFound();
 
   const blogData = blogTopic.blogs[blogIdx];
-  const content = fs.readFileSync(path.join(BLOGPATH, blogData.path), "utf-8");
-  if (content && content.length > 0) {
-    const heads = Array.from(content.matchAll(/^# (.*)\r/gm)).map((head) =>
-      head[1].toLowerCase().replaceAll(" ", "-")
-    );
-    if (heads && heads.length > 0) {
-      blogData.contents = heads;
-      console.log(heads);
-    }
-  }
+  // ======== x ==========
+  // const content = fs.readFileSync(path.join(BLOGPATH, blogData.path), "utf-8");
+  // if (content && content.length > 0) {
+  //   const heads = Array.from(content.matchAll(/^# (.*)\r/gm)).map((head) =>
+  //     head[1].toLowerCase().replaceAll(" ", "-")
+  //   );
+  //   if (heads && heads.length > 0) {
+  //     blogData.contents = heads;
+  //     console.log(heads);
+  //   }
+  // }
+  // ======== x ==========
   const Component = dynamic(() =>
     import(`@/(articles)/${blogData.path}`).catch((err) => {
       return notFound();

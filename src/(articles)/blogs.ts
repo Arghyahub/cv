@@ -51,9 +51,9 @@ const allBlogs: BlogListType[] = [
     blogs: [
       {
         title: "how-reactJs-works",
-        desc: "What is reactJs, how does reactJs work and why reactJs is so special.",
+        desc: "What is reactJs, how does reactJs work and why reactJs is so special. What is virtual dom and how reconciliation works.",
         path: "reactjs/how-reactJs-works.mdx",
-        contents: [],
+        contents: ["components", "virtual-dom", "reconciliation"],
         date: "13-07-2024",
       },
     ],
