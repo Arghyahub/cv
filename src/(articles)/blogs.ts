@@ -46,6 +46,18 @@ const allBlogs: BlogListType[] = [
       },
     ],
   },
+  {
+    topic: "react",
+    blogs: [
+      {
+        title: "how-reactJs-works",
+        desc: "What is reactJs, how does reactJs work and why reactJs is so special.",
+        path: "reactjs/how-reactJs-works.mdx",
+        contents: [],
+        date: "13-07-2024",
+      },
+    ],
+  },
 ];
 
 export default allBlogs;
