@@ -56,6 +56,21 @@ const allBlogs: BlogListType[] = [
         contents: ["components", "virtual-dom", "reconciliation"],
         date: "13-07-2024",
       },
+      {
+        title: "learn-reactJs",
+        desc: "How to learn reactJs, Learn reactJs from beginner to advance level. Learn reactJs hooks, states, props, context, optimization, etc.",
+        path: "reactjs/learn-react.mdx",
+        contents: [
+          "new-to-reactjs",
+          "handling-events",
+          "states-and-props",
+          "more-hooks",
+          "miscellaneous",
+          "optimizations",
+          "expanding-knowledge",
+        ],
+        date: "15-07-2024",
+      },
     ],
   },
 ];

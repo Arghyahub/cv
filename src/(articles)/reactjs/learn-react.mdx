@@ -1,0 +1,718 @@
+First [Setup React by clicking here](/blog/setup/react)
+
+# New to ReactJs
+### People who have already learned HTML, CSS and JavaScript.
+
+You have to write similar HTML code but it should be returned by a function.
+
+```jsx
+function App() {
+  return (
+    <div>
+      <h1>Hello World</h1>
+    </div>
+  );
+}
+export default App;
+```
+
+This is called a functional component and you can reuse components in React.
+
+### Reusing Components
+
+In components can be used multiple times.
+```jsx {8-9}
+function Header() {
+  return <h1>Hello World</h1>;
+}
+
+function App() {
+  return (
+    <div>
+      <Header />
+      <Header />
+    </div>
+  );
+}
+export default App;
+```
+
+If the component is in a different file, import it and you can use it like a tag. You can either have a self closing tag `<ComponentName />` or an opening and closing tag `<ComponentName></ComponentName>`
+
+* Bonus: Sometimes we have pages where we have the same card UI used multiple times, only the data is changing. We can create an array of data and map over it.
+
+```jsx
+function App() {
+  const data = [{ name: 'John', id: 1 }, { name: 'Doe', id: 2 }];
+  return (
+    <div>
+      {data.map((elem) => (
+        <div key={elem.id}>{elem.name}</div>
+      ))}
+    </div>
+  );
+}
+export default App;
+```
+You can learn about the `key` prop [here](/blog/react/how-reactJs-works)
+
+### Inline Styling has changed
+```html title="from this"
+<div style="background-color: red;">Hello</div>
+```
+    
+```jsx title="to this"
+<div style={{ backgroundColor: 'red' }}>Hello</div>
+```
+
+Style in ReactJs is an object with camelCase properties. Every CSS property with a hyphen (-) will be camelCase in ReactJs.
+
+And thats it, you can keep writing HTML, CSS and JavaScript in ReactJs like you used to, in fact you can reuse components and write inline styles in a better way.
+
+### Id and Class 
+
+Id is the same as HTML but class is replaced by className.
+
+```jsx
+<div id="header" className="header">Hello</div>
+```
+
+`class` is renamed to `className` because `class` is a reserved keyword in JavaScript.
+
+Simple right? Just use the Normal HTML, CSS, Js and convert names to camelCase and you are good to go.
+
+# Handling Events
+### Event Handlers
+
+Events such as click, key presses, mouse movements are handled in ReactJs using event handlers.
+
+Some of the important event handlers are `onClick` , `onMouseOver`, `onMouseOut`, `onKeyDown`, `onKeyUp`, `onKeyPress`.
+
+```jsx {2-4,7}
+function App() {
+  function func() {
+    alert('Button Clicked');
+  }
+
+  return (
+    <button onClick={func}>Click Me</button>
+  )
+}
+export default App;
+```
+
+See I have passed a function to `onClick` event handler. This function will be called when the button is clicked.
+
+But I have used `func` not `func()`. This is because I am passing a reference to the function and not calling the function.
+
+#### But what if I want to use parameters in the function?
+
+```jsx {2-4,7}
+function App() {
+  function func(param) {
+    alert(param);
+  }
+
+  return (
+    <button onClick={() => func('Button Clicked')}>Click Me</button>
+  )
+}
+export default App;
+```
+This is how you can pass parameters to the function.
+
+There are more event handlers and you can use them as per your need.
+
+One such event handler that I like to use `onChange` and `onSubmit`.
+
+```jsx 
+function App() {
+  function handleChange(e) {
+    console.log(e.target.value);
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    // fetch API or any other logic
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input type="text" value={name} onChange={handleChange} />
+      <button type="submit">Submit</button>
+    </form>
+  )
+}
+export default App;
+```
+
+# States and Props
+
+When we were using HTML, CSS mostly the sites were static and we were not changing the content of the site that much, We can do it with JavaScript but it was not that easy. You have to manage everything.
+
+React came up with a very convenient approach of managing state of the application and rendering the UI.
+
+### State
+
+The state is a built-in React object that is used to contain data or information about the component. When the state of a component changes, the component re-renders.
+
+It reacts to the change in state that is why it is called `React`.
+
+#### To showcase the use of states, I'll use two simple `React hooks` which are `useState` and `useEffect`
+
+```jsx title="States with useState"
+import React, { useState } from 'react';
+
+function App() {
+  const [count, setCount] = useState(0);
+  // count is the state variable and setCount is the function to update the state
+
+  return (
+    <div>
+      <h1>{count}</h1> {/* the value of count is displayed */}
+      <button onClick={() => setCount(count + 1)}>Increment</button>
+      {/* the onClick handler increments the state values */}
+    </div>
+  )
+}
+export default App;
+```
+
+`useState` is a React hook that allows you to have state variables in functional components. The first value in the LHS array is the state variable and the second value is the function to update the state.
+
+The value passed to `useState(`0`)` is the initial value of the state variable to be initialized with.
+
+Look at the onClick handler, it is updating the state variable `count` by 1 using the setCount function.
+
+### useEffect
+
+`useEffect` is a React hook helps you to perform side effects in your functional components. The effect can be anything like fetching data, updating the DOM, change in state, etc.
+
+**(a) Dependency Changes**
+
+```jsx title="useEffect"
+import React, { useState, useEffect } from 'react';
+
+function App() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    console.log(count)
+  },
+  [count]); // sensitivity list
+
+  return (
+    <div>
+      <h1>{count}</h1>
+      <button onClick={() => setCount(count + 1)}>Increment</button>
+    </div>
+  )
+}
+export default App;
+```
+
+In the above example you can see useEffect takes two parameters, a callBack and a sensitivity list. The callBack function is executed when the component is mounted and the sensitivity list is the list of variables that the useEffect is dependent on or it is sensing. If any of the variables in the sensitivity list changes, the callBack function is executed.
+
+**(b) Component Did Mount**
+
+```jsx
+import React, { useEffect } from 'react';
+
+const Component = () => {
+    useEffect(() => {
+        console.log('Component did mount');
+    }, []); // Empty dependency array ensures it runs only once
+    
+    return <div>Hello, World!</div>;
+};
+
+export default Component;
+```
+
+When you have a empty dependency array the useEffect function only runs initially when the page(component) is loaded.
+
+This can be very useful say you want to fetch some data on page initially, you can use useEffect with an empty dependency array and fetch the data and update it into a useState.
+
+Additionally you can also have a loading State to show a loader while the data is being fetched.
+
+```jsx title="Fetch on load with loader"
+import React, { useEffect, useState } from 'react';
+
+const Component = () => {
+    const [data, setData] = useState(NULL);
+    const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        setLoading(true); // mark it as true until data is fetched
+        // Fetching logic
+        setData("Newly fetched Data");
+        setLoading(false);
+    }, [])
+    
+    return (
+        <div>
+            {loading? (
+                <h1>Loading please wait...</h1>
+            ): (
+                <h1>{data}</h1>
+            )}
+        </div>
+    )
+};
+export default Component;
+```
+
+**(c) Component Did Update**
+
+We can remove the second parameter of useEffect `dependency array` and then the useEffect will respond on every render.
+
+```jsx
+import React, { useState, useEffect } from 'react';
+
+const Component = () => {
+    const [count, setCount] = useState(0);
+
+    useEffect(() => {
+        console.log('Component did update');
+    }); // No dependency array means it runs after every render
+    
+    return (
+        <div>
+            <p>Count: {count}</p>
+            <button onClick={() => setCount(count + 1)}>Increment</button>
+        </div>
+    );
+};
+export default Component;
+```
+
+Try clicking on the button and check what happens, try introducing multiple states and update them, check what happens.
+
+Try reloading the page and check what happens in the console and you'll get it.
+
+**(c) Optional Cleanup function**
+
+You can return a function from useEffect which will be called when the component is unmounted.
+
+```jsx title="Cleanup function"
+import React, { useState, useEffect } from 'react';
+
+const Component = () => {
+    const [count, setCount] = useState(0);
+
+    useEffect(() => {
+        console.log('Component did mount');
+        return () => {
+            console.log('Component will unmount');
+        };
+    }, []);
+    
+    return (
+        <div>
+            <p>Count: {count}</p>
+            <button onClick={() => setCount(count + 1)}>Increment</button>
+        </div>
+    );
+};
+export default Component;
+```
+
+When ever state changes, the UI changes the component unmounts and unmount, the cleanup function is called when the component is about to unmount.
+
+### Props
+Most probably you have started to split your entire web page into components, that great, its more readable and maintainable, at the same time you don't have to repeat yourself, you can reuse components.
+
+But what if you need to use a data thats in parent component and you want to pass it in child component?
+
+You can pass it using Props
+
+1. Define the props in the child component
+2. Pass the props in the parent component
+
+```jsx title="Parent Component" "parameter={data}"
+import React from 'react';
+import Child from './Child';
+
+const Parent = () => {
+    const data = "Data from Parent";
+
+    return <Child parameter={data} />;
+};
+export default Parent;
+```
+
+```jsx title="Child Component" "{ parameter }"
+import React from 'react';
+
+const Child = ({ parameter }) => {
+    return <h1>{parameter}</h1>;
+};
+export default Child;
+```
+
+Here `parameter` is the name of the Prop, what ever the parent component sends in `parameter={}`, child component will receive it and can use it by destructuring it.
+
+You can also pass in states, functions, objects, arrays, etc. You can also manipulate state in parent component from child component by passing functions as props.
+
+Good job 🚀
+You have reached this level, almost 80-90% of entry level projects can be built using this. Some companies may even give you a internship offer if you know this much and have made good projects.
+
+Take a break, you have learned a lot. Checkout [my projects](/) and you can build your own, watch some tutorials for building project and practice.
+
+## Important Checkpoint
+You will require to learn some external libraries that will help you along your way like `react-router-dom` for routing, UI libraries such as `MUI` or `Shadcn` and some state management libraries like `Redux` or `Zustand`
+
+---
+
+# More Hooks
+
+While you can do a lot with `useState` `useEffect` and `props`.
+There's more to explore...
+
+### More Hooks 
+
+**(a) useContext hook**
+
+Say you want to share a state from parent component to a child component and the child component passes it to another child component like A=>B=>C.
+
+You can surely pass the data from parent `A` to `B` as prop and `B` can share it with `C` as prop `[This is called prop drilling]` but this can be cumbersome if you have a lot of components in between, the performance can be affected.
+
+If Component `B` is not using the data, why send it as a prop? We can use useContext hook.
+
+1. Create a context in a separate file
+2. Wrap the child component in the parent component with the Context.Provider
+3. Use useContext hook in the child component to access the data
+
+```jsx title="Context File"
+import { createContext } from 'react';
+
+const MyContext = createContext();
+export default MyContext;
+```
+
+```jsx title="Parent Component A" "<MyContext.Provider" "{data}"
+import React from 'react';
+import MyContext from './MyContext';
+import Child from './Child';
+
+const Parent = () => {
+    const data = "Data from Parent";
+    return (
+        <MyContext.Provider value={data}>
+            <Child />
+        </MyContext.Provider>
+    );
+};
+export default Parent;
+```
+
+```jsx title="Child Component C"
+import React, { useContext } from 'react';
+import MyContext from './MyContext';
+
+const Child = () => {
+    const data = useContext(MyContext);
+
+    return <h1>{data}</h1>;
+};
+export default Child;
+```
+
+**(b) useReducer hook**
+
+`useReducer` hook is an alternative to useState for managing complex state logic the redux way.
+
+The left side will look the same calling the useReducer hook will give the `state` and a `dispatch` function to update the state.
+
+The useReducer hook takes two parameters, a `reducer function` and an `initial state`, the reducer function will held the logic to be executed when the dispatch function is called.
+
+```jsx title="useReducer"
+import React, { useReducer } from 'react';
+
+const initialState = { count: 0 };
+
+function reducer(state, action) {
+    switch (action.type) {
+        case 'increment':
+            return { count: state.count + 1 };
+        case 'decrement':
+            return { count: state.count - 1 };
+        default:
+            throw new Error();
+    }
+}
+
+function Counter() {
+    const [state, dispatch] = useReducer(reducer, initialState);
+
+    return (
+        <div>
+            <p>{state.count}</p>
+            <button onClick={() => dispatch({ type: 'increment' })}>+</button>
+            <button onClick={() => dispatch({ type: 'decrement' })}>-</button>
+        </div>
+    );
+}
+
+export default Counter;
+```
+
+There's no right or wrong way to use `useReducer` or `useState`, you can use them as per your convenience.
+
+**(c) useMemo Hook**
+
+This is a game changer if you use it right, whenever a state changes in a component, the component re-renders and any logic inside the component is executed again.
+
+But what if you have a complex logic that is not dependent on the state of the component, re running it can take a lot of time.
+
+We can solve this problem by memoizing the logic using `useMemo` hook.
+
+It looks very similar to `useEffect` and takes a callback function and a dependency array.
+
+```jsx title="useMemo"
+import React, { useMemo, useState } from 'react';
+
+const Component = () => {
+    const [count, setCount] = useState(0)
+
+    const data = useMemo(() => {
+        // Say executing this operation is time consuming and need not to computed on every render
+        return "Data from useMemo";
+    }, []); // dependency array
+
+    return (
+        <div>
+            <p>{count}</p>
+            <button onClick={() => setCount(count + 1)}>Increment</button>
+            <p>{data}</p>
+        </div>
+    );
+};
+
+export default Component;
+```
+In the above example, the data is computed only once when the component is mounted and not on every render. If your data is dependent upon some state, just like useEffect, you can pass the state in the dependency array.
+
+**(d) useCallback Hook**
+
+`useCallback` is similar to `useMemo` but it memoizes functions.
+
+If you have a function that is not dependent on the state of the component, you can memoize it using `useCallback`.
+
+```jsx title="useCallback"
+import React, { useCallback, useState } from 'react';
+
+const Component = () => {
+    const [count, setCount] = useState(0);
+
+    const handleClick = useCallback(() => {
+        console.log('Button Clicked');
+    }, []); // dependency array
+
+    return (
+        <div>
+            <p>{count}</p>
+            <button onClick={() => setCount(count+1)}>Increment</button>
+        </div>
+    );
+};
+
+export default Component;
+```
+
+In the above example, the `handleClick` function is memoized and will not be redefined on every render. You can think of it as the function is frozen in time and will have the states and props that were present when it was defined/redefined. 
+
+**(e) useRef Hook**
+
+`useRef` is used to access the DOM elements directly in the functional components.
+
+1. Create a ref using `useRef` hook and set to null
+2. Attach the ref to the DOM element using `ref` attribute `ref=\{refName\}`
+3. Access the DOM element using refName.current
+
+```jsx title="useRef" {4} "ref={inputRef}" "inputRef.current.value"
+import React, { useRef } from 'react';
+
+const Component = () => {
+    const inputRef = useRef(null); // initialization
+    return (
+        <div>
+            {/* inputRef is attached to the input element */}
+            <input ref={inputRef} type="text" />
+            <button onClick={() => {
+                console.log(inputRef.current.value);
+            }}>Print value</button>
+        </div>
+    );
+};
+
+export default Component;
+```
+
+In the above example, the `inputRef` is used to access the value of the input field directly.
+
+And You're done with almost all the import Hooks. Kudos to you 🎉
+
+As per use case you can build your own custom hook. You can check it [here](https://www.w3schools.com/react/react_customhooks.asp) 
+
+# Miscellaneous
+
+I'll dedicate this level to some features like `portals` and `error boundaries` and `lazy loading` and `suspense`.
+
+### Portals
+
+Portals are used to render a child component outside the DOM hierarchy of the parent component. It can be used for many reasons like modals, tooltips, etc. Its advantage is that it can be rendered without getting affected by the parent component's styles.
+
+1. Create a portal using `ReactDOM.createPortal(child, container)`
+2. Attach the portal to the DOM using `ReactDOM.createPortal(child, container)`
+
+```jsx title="Portals"
+import React from 'react';
+
+const Modal = ({ children }) => {
+    return ReactDOM.createPortal(
+        <div>Modal</div>,
+        document.getElementById('modal-root')
+    );
+};
+
+export default Modal;
+```
+
+In the root HTML file add a div with an id `modal-root` where the portal will be attached.
+
+```html title="index.html"
+<div id="modal-root"></div>
+```
+
+In the above example, the `Modal` component is rendered outside the parent component's DOM hierarchy.
+
+### Error Boundaries
+
+Error boundaries are used to catch JavaScript errors in the child component tree and display a fallback UI instead of crashing the entire component tree.
+
+1. Create an error boundary component using `componentDidCatch(error, info)`
+2. Wrap the child component in the error boundary component
+
+```jsx title="Error Boundaries"
+import React from 'react';
+
+class ErrorBoundary extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { hasError: false };
+    }
+
+    componentDidCatch(error, info) {
+        this.setState({ hasError: true });
+    }
+
+    render() {
+        if (this.state.hasError) {
+            return <h1>Something went wrong</h1>;
+        }
+        return this.props.children;
+    }
+}
+
+export default ErrorBoundary;
+```
+
+Now you can wrap the child component in the error boundary component.
+
+```jsx title="Parent Component"
+import React from 'react';
+import ErrorBoundary from './ErrorBoundary';
+import Child from './Child';
+
+
+const Parent = () => {
+    return (
+        <ErrorBoundary>
+            <Child />
+        </ErrorBoundary>
+    );
+};
+
+export default Parent;
+```
+
+As you can see the ErrorBoundary is a class component. React has not introduced a functional component way of using it yet. You have to use it as a class component.
+
+### Lazy Loading and Suspense
+
+Lazy loading is used to load the component only when it is required. Suspense is used to show a fallback UI while the component is being loaded.
+
+1. Create a lazy component using `React.lazy(() => import('./Component'))`
+2. Wrap the lazy component in a Suspense component
+
+```jsx title="Lazy Loading and Suspense"
+import React, { Suspense } from 'react';
+
+// Lazy-loaded component
+const MyLazyComponent = React.lazy(() => import('./MyLazyComponent'));
+
+function App() {
+  return (
+    <div>
+      <Suspense fallback={<div>Loading...</div>}>
+        <MyLazyComponent />
+      </Suspense>
+    </div>
+  );
+}
+
+export default App;
+```
+
+Here you can lazy load a component and `Suspense` component lets you display a feedback until the component is loaded.
+
+# Optimizations
+
+Optimizing performance is crucial for a better user experience. Here are some ways to optimize your React application.
+
+1. **Code Splitting**
+
+Code splitting involves breaking down your application's codebase into smaller bundles that can be loaded asynchronously. This allows you to load only the necessary code for the current view, reducing initial load times.
+
+We have already learned the implementation, you can use [React.lazy and Suspense](/blog/react/learn-reactJs#lazy-loading-and-suspense) to achieve code splitting. This way a huge bundle of code is not loaded at once, only the required code is loaded when needed.
+
+2. **Virtualization**
+
+Virtualization is a technique used to optimize rendering performance by only rendering items that are visible to the user. This is particularly useful when dealing with large lists or tables.
+
+Libraries like [react-virtualized](https://www.npmjs.com/package/react-virtualized) or [react-window](https://www.npmjs.com/package/react-window) can be used. Here's a beautiful [blog](https://blog.logrocket.com/react-virtualized-vs-react-window/) on the topic.
+
+3. **Memoization**
+
+Memoization is a technique used to optimize performance by storing the results of expensive function calls and returning the cached result when the same inputs occur again.
+
+We have learned 2 memoization techniques [useMemo and useCallback](/blog/react/learn-reactJs#more-hooks) and third memoization technique is `memo` which is used to prevent unnecessary re-renders in functional components.
+
+```jsx title="Memo"
+import React, { memo } from 'react';
+
+const Child = ({ parameter }) => {
+    return <h1>{parameter}</h1>;
+};
+export default memo(Child);
+```
+
+In the above example, the `Child` component will only re-render if the `parameter` prop changes.
+
+And mostly done. Other Optimizations include *Compression, Image and Media Optimization, Efficient state management*
+
+# Expanding knowledge
+Now you have mastered all the levels of ReactJs, you can build performance optimized applications, you can build complex applications that are maintainable and scalable.
+
+You can expand your knowledge about :
+
+1. Learn [How react works](/blog/react/how-reactJs-works)
+1. Build Tools like [Webpack](https://webpack.js.org/), [Babel](https://babeljs.io/)
+2. Task runners like [Gulp](https://gulpjs.com/) and [Grunt](https://gruntjs.com/)
+
+## Conclusion
+
+Congratulations 🎉 You have learned ReactJs from scratch to advanced level. You can now build complex applications, optimize performance, and use advanced features of ReactJs.
+
+I'll recommend to make projects, Learn Typescript and explore other libraries out there. Good job, Hope my article helps. If you have any queries, feel free to ask.
