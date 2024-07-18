@@ -125,7 +125,7 @@ There are more event handlers and you can use them as per your need.
 
 One such event handler that I like to use `onChange` and `onSubmit`.
 
-```jsx 
+```jsx {2-4,6-9} "onSubmit={handleSubmit}" "onChange={handleChange}"
 function App() {
   function handleChange(e) {
     console.log(e.target.value);
@@ -160,7 +160,7 @@ It reacts to the change in state that is why it is called `React`.
 
 #### To showcase the use of states, I'll use two simple `React hooks` which are `useState` and `useEffect`
 
-```jsx title="States with useState"
+```jsx title="States with useState" {4} "setCount(count + 1)"
 import React, { useState } from 'react';
 
 function App() {
@@ -178,7 +178,7 @@ function App() {
 export default App;
 ```
 
-`useState` is a React hook that allows you to have state variables in functional components. The first value in the LHS array is the state variable and the second value is the function to update the state.
+`useState` is a React hook that allows you to have state variables in functional components. The first value in the LHS is the state variable and the second value is the function to update the state.
 
 The value passed to `useState(`0`)` is the initial value of the state variable to be initialized with.
 
@@ -190,7 +190,7 @@ Look at the onClick handler, it is updating the state variable `count` by 1 usin
 
 **(a) Dependency Changes**
 
-```jsx title="useEffect"
+```jsx title="useEffect" {6-9}
 import React, { useState, useEffect } from 'react';
 
 function App() {
@@ -215,7 +215,7 @@ In the above example you can see useEffect takes two parameters, a callBack and 
 
 **(b) Component Did Mount**
 
-```jsx
+```jsx {4-6}
 import React, { useEffect } from 'react';
 
 const Component = () => {
@@ -235,7 +235,7 @@ This can be very useful say you want to fetch some data on page initially, you c
 
 Additionally you can also have a loading State to show a loader while the data is being fetched.
 
-```jsx title="Fetch on load with loader"
+```jsx title="Fetch on load with loader" {7-12}
 import React, { useEffect, useState } from 'react';
 
 const Component = () => {
@@ -266,7 +266,7 @@ export default Component;
 
 We can remove the second parameter of useEffect `dependency array` and then the useEffect will respond on every render.
 
-```jsx
+```jsx {6-8}
 import React, { useState, useEffect } from 'react';
 
 const Component = () => {
@@ -294,7 +294,7 @@ Try reloading the page and check what happens in the console and you'll get it.
 
 You can return a function from useEffect which will be called when the component is unmounted.
 
-```jsx title="Cleanup function"
+```jsx title="Cleanup function" {8-10}
 import React, { useState, useEffect } from 'react';
 
 const Component = () => {
@@ -360,7 +360,7 @@ You have reached this level, almost 80-90% of entry level projects can be built 
 Take a break, you have learned a lot. Checkout [my projects](/) and you can build your own, watch some tutorials for building project and practice.
 
 ## Important Checkpoint
-You will require to learn some external libraries that will help you along your way like `react-router-dom` for routing, UI libraries such as `MUI` or `Shadcn` and some state management libraries like `Redux` or `Zustand`
+You will require to learn some external libraries that will help you along your way like `react-router-dom` for routing, UI libraries such as `MUI` or `Shadcn` and some state management libraries like `Redux` or `Zustand`. Also explore `React developer tools` extension.
 
 ---
 
@@ -406,7 +406,7 @@ const Parent = () => {
 export default Parent;
 ```
 
-```jsx title="Child Component C"
+```jsx title="Child Component C" {5}
 import React, { useContext } from 'react';
 import MyContext from './MyContext';
 
@@ -426,7 +426,7 @@ The left side will look the same calling the useReducer hook will give the `stat
 
 The useReducer hook takes two parameters, a `reducer function` and an `initial state`, the reducer function will held the logic to be executed when the dispatch function is called.
 
-```jsx title="useReducer"
+```jsx title="useReducer" {5-14,17} "dispatch({ type: 'increment' })" "dispatch({ type: 'decrement' })"
 import React, { useReducer } from 'react';
 
 const initialState = { count: 0 };
@@ -469,7 +469,7 @@ We can solve this problem by memoizing the logic using `useMemo` hook.
 
 It looks very similar to `useEffect` and takes a callback function and a dependency array.
 
-```jsx title="useMemo"
+```jsx title="useMemo" {6-9}
 import React, { useMemo, useState } from 'react';
 
 const Component = () => {
@@ -499,7 +499,7 @@ In the above example, the data is computed only once when the component is mount
 
 If you have a function that is not dependent on the state of the component, you can memoize it using `useCallback`.
 
-```jsx title="useCallback"
+```jsx title="useCallback" {6-8}
 import React, { useCallback, useState } from 'react';
 
 const Component = () => {
@@ -620,7 +620,7 @@ export default ErrorBoundary;
 
 Now you can wrap the child component in the error boundary component.
 
-```jsx title="Parent Component"
+```jsx title="Parent Component" {8,10}
 import React from 'react';
 import ErrorBoundary from './ErrorBoundary';
 import Child from './Child';
@@ -646,7 +646,7 @@ Lazy loading is used to load the component only when it is required. Suspense is
 1. Create a lazy component using `React.lazy(() => import('./Component'))`
 2. Wrap the lazy component in a Suspense component
 
-```jsx title="Lazy Loading and Suspense"
+```jsx title="Lazy Loading and Suspense" {4, 9, 11}
 import React, { Suspense } from 'react';
 
 // Lazy-loaded component
@@ -689,7 +689,7 @@ Memoization is a technique used to optimize performance by storing the results o
 
 We have learned 2 memoization techniques [useMemo and useCallback](/blog/react/learn-reactJs#more-hooks) and third memoization technique is `memo` which is used to prevent unnecessary re-renders in functional components.
 
-```jsx title="Memo"
+```jsx title="Memo" {6}
 import React, { memo } from 'react';
 
 const Child = ({ parameter }) => {
@@ -715,4 +715,4 @@ You can expand your knowledge about :
 
 Congratulations 🎉 You have learned ReactJs from scratch to advanced level. You can now build complex applications, optimize performance, and use advanced features of ReactJs.
 
-I'll recommend to make projects, Learn Typescript and explore other libraries out there. Good job, Hope my article helps. If you have any queries, feel free to ask.
+I'll recommend to make projects, Learn `Typescript` for better type safety and explore other libraries out there. Good job, Hope my article helps. If you have any queries, feel free to ask.
