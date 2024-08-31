@@ -1,6 +1,6 @@
 "use client";
 import { cn } from "@/lib/utils";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import {
   Accordion,
   AccordionContent,
@@ -17,6 +17,14 @@ type Props = {
 };
 
 const SidebarContent = ({ styleTW = "", currentPage }: Props) => {
+  const contentRef = useRef<HTMLAnchorElement>(null);
+
+  useEffect(() => {
+    if (contentRef && contentRef.current) {
+      contentRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [contentRef]);
+
   return (
     <div
       className={cn(
@@ -48,6 +56,11 @@ const SidebarContent = ({ styleTW = "", currentPage }: Props) => {
                 <Link
                   key={index}
                   href={`/blog/${topic.topic}/${blog.title}`}
+                  ref={
+                    currentPage === `${topic.topic}/${blog.title}`
+                      ? contentRef
+                      : null
+                  }
                   className={cn("hover:bg-slate-50 ml-3 px-2 py-3 capitalize", {
                     "bg-cyan-100":
                       currentPage === `${topic.topic}/${blog.title}`,
