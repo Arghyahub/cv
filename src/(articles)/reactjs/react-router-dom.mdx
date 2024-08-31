@@ -1,0 +1,136 @@
+[React router DOM](https://reactrouter.com/en/main) is a popular library for handling routing in React applications.
+What is routing? Routing is the process of determining what content to display based on the URL. 
+For example, if the URL is `/about`, the router should display the About page.
+
+To continue the blog you need to setup a react project and react-router-dom, you can checkout [Here](/blog/setup/react) and notice how the URL after the domain changes and you should have some knowledge of React, you can learn it [Here](/blog/react/learn-reactJs).
+
+I shifted to NextJs and started to using NextJs router, this blog will also help me whenever I work on a React project.
+
+# Setup
+
+```jsx
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+const router = createBrowserRouter([
+    {
+        path: "/",
+        element: <Home /> // Any react component
+    },
+    {
+        path: "/test",
+        element: <div>This is a test route</div>
+    }
+]);
+
+export default function App() {
+    return (
+        <RouterProvider router={router} />
+    );
+}
+```
+
+# Navigating between routes
+
+Now once you have setup the router, you can navigate between routes using the `Link` component.
+Why not use the anchor tag? The anchor tag will reload the page and if you use router it will not reload the page and will be faster.
+
+```jsx
+import { Link } from "react-router-dom";
+
+export default function Home() {
+    return (
+        <div>
+            <h1>Home</h1>
+            <Link to="/test">Test</Link>
+        </div>
+    );
+}
+```
+
+And thats it, you have learned how to setup and navigate between routes using react-router-dom.
+
+
+# URL parameters
+
+Parameters are very powerful in routing, they can convey some data through routes. Say you want to display a user profile, you can use the user id as a parameter in the URL.
+
+```jsx title="Setting up routes with parameters" ":id"
+{
+    path: "/user/:id",
+    element: <UserProfile />
+}
+```
+
+Now how can you access the parameter in the component?
+
+```jsx title="Accessing parameters" "id" 
+import { useParams } from "react-router-dom";
+
+export default function UserProfile() {
+    const { id } = useParams();
+    return (
+        <div>
+            <h1>User Profile</h1>
+            <p>User id: {id}</p>
+        </div>
+    );
+}
+```
+
+# Query Parameters
+
+Query parameters are key-value pairs added to the end of a URL after a ? symbol. They are commonly used to filter, sort, or pass additional data to a route without changing the URL structure. They can be used using `useSearchParams` hook.
+
+```jsx {11-13,4}
+import { useSearchParams } from "react-router-dom";
+
+export default function App() {
+  let [searchParams, setSearchParams] = useSearchParams();
+
+    return (
+        <div>
+        <h1>Search</h1>
+        <input
+            type="text"
+            defaultValue={searchParams.get("query") || ""}  // Get the query parameter
+            onChange={(event) => {
+            setSearchParams({ query: event.target.value }); // Update the query Parameter
+            }}
+        />
+        </div>
+    );
+}
+
+```
+
+# Programmatic Navigation
+
+You can also navigate between routes programmatically using the `useNavigate` hook.
+
+```jsx "navigate" "useNavigate"
+import { useNavigate } from "react-router-dom";
+
+export default function Home() {
+    const navigate = useNavigate();
+
+    return (
+        <div>
+            <h1>Home</h1>
+            <button onClick={() => navigate("/test")}>Go to test</button>
+        </div>
+    );
+}
+```
+
+# Handling 404 pages
+
+You can also handle 404 pages by adding a route with a `*` path in the router.
+
+```jsx title="Handling 404 pages"
+{
+    path: "*",
+    element: <NotFound />
+}
+```
+
+All the important aspects of react-router-dom are covered in this blog, the features that are used more frequently are covered here. For more specific features you can always checkout the official [documentation](https://reactrouter.com/en/main). Cheers 🥳

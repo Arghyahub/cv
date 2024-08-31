@@ -71,6 +71,20 @@ const allBlogs: BlogListType[] = [
         ],
         date: "15-07-2024",
       },
+      {
+        title: "learn-react-router",
+        desc: "How to learn react-router, Learn react-router from beginner to advance level. Learn react-router hooks, how to change pages programmatically, setup react-router.",
+        path: "reactjs/react-router-dom.mdx",
+        contents: [
+          "setup",
+          "navigating-between-routes",
+          "url-parameters",
+          "query-parameters",
+          "programmatic-navigation",
+          "handling-404-pages",
+        ],
+        date: "31-08-2024",
+      },
     ],
   },
 ];
