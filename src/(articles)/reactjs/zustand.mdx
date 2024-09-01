@@ -1,0 +1,169 @@
+Zustand is a small, fast, and scalable state management library for React. It provides a simple API for managing both global and local state without the complexity of other state management tools.
+
+How will you send data from child to parent component or how will you share data with sibling component, all that complexity is solved by Zustand.
+
+I personally prefer Zustand over Redux because it is much simpler to use and has a smaller bundle size. It is also easier to understand and debug.
+
+` To install and configure Zustand with ReactJs head over to` [here](/blog/setup/react) 
+
+# Setup
+
+```jsx
+import {create} from "zustand";
+
+const useStore = create((set) => ({
+    count: 0,
+    increment: () => set((state) => ({ count: state.count + 1 })),
+    decrement: () => set((state) => ({ count: state.count - 1 })),
+    reset: () => set({ count: 0 })
+}));
+
+export default useStore;
+```
+
+In Typescript
+
+```tsx
+import {create} from "zustand";
+
+interface State {
+    count: number;
+    increment: () => void;
+    decrement: () => void;
+    reset: () => void;
+}
+
+const useStore = create<State>((set) => ({
+    count: 0,
+    increment: () => set((state) => ({ count: state.count + 1 })),
+    decrement: () => set((state) => ({ count: state.count - 1 })),
+    reset: () => set({ count: 0 })
+}));
+
+export default useStore;
+```
+
+The functions inside the store can also be asynchronous. You can use it to fetch data from an API or perform any other asynchronous operation.
+
+# Retrieving state and updating state
+
+Be careful while importing the store. If you import all the functions and state in a single import, it will cause the component to re-render whenever the state changes. Instead, import only the required functions and state.
+
+```jsx
+import useStore from "./store";
+
+export default function Counter() {
+    const count = useStore((state) => state.count);
+    const increment = useStore((state) => state.increment);
+    const decrement = useStore((state) => state.decrement);
+    const reset = useStore((state) => state.reset);
+
+    return (
+        <div>
+            <h1>{count}</h1>
+            <button onClick={increment}>Increment</button>
+            <button onClick={decrement}>Decrement</button>
+            <button onClick={reset}>Reset</button>
+        </div>
+    );
+}
+```
+
+Zustand also provides a method to use and updates states outside of a React Component.
+
+```jsx
+import useStore from "./store";
+
+const func = () => {
+    const increment = useStore.getState().increment;
+    increment();
+}
+```
+
+# Immer Middleware
+
+Immer Middleware can be used to update the state in a more readable way and updating nested objects becomes easier.
+
+### Installation
+
+```bash
+npm install immer
+```
+
+### Updating without Immer
+
+```jsx {8-9}
+import { create } from 'zustand'
+
+const useStore = create((set) => ({
+    marks: {
+        maths: 90,
+        science: 80
+    },
+    updateMathsMarks: (newMarks) => set((state) => ({ marks: { ...state.marks, maths: newMarks }})),
+    updateScienceMarks: (newMarks) => set((state) => ({ marks: { ...state.marks, science: newMarks }}))
+}))
+```
+
+See updating the nested object is a bit complex and can be hard to understand. But with Immer middleware you only need to update the required key and Immer will take care of the rest.
+
+```jsx {9-10} caption="Just wrap the set function with Immer" /immer/3
+import { create } from 'zustand'
+import { immer } from 'zustand/middleware/immer'
+
+const useStore = create(immer((set) => ({
+    marks: {
+        maths: 90,
+        science: 80
+    },
+    updateMathsMarks: (newMarks) => set((state) => { state.marks.maths = newMarks }),
+    updateScienceMarks: (newMarks) => set((state) => { state.marks.science = newMarks })
+})))
+```
+
+# Persistent States
+
+Zustand also provides a way to persist the state even after the page is refreshed. You can use the `persist` middleware to achieve this. The data is stored in Local Storage/Session Storage/IndexedDB.
+
+It becomes very convenient to store the user's theme preference, language preference, or any other data that you want to persist.
+
+```jsx caption="Just wrap the set function into persist" /persist/2 {9-11}
+import { create } from 'zustand'
+import { persist } from 'zustand/middleware'
+
+const useStore = create(persist(
+    (set) => ({
+        theme: 'light',
+        setTheme: (theme) => set({ theme })
+    }),
+    {
+        name: 'theme-storage'
+    }
+))
+```
+
+persist also takes a second argument which is an object with the following properties:
+
+- `name`: The name of the storage key.
+- `getStorage`: A function that returns the storage object. By default, it uses `localStorage`. You can also use `sessionStorage` or `indexedDB`.
+
+Like this:
+```jsx {11} title="Using sessionStorage" caption="sessionStorage is part of the window object just like localStorage and can be used in the same way."
+import { create } from 'zustand'
+import { persist } from 'zustand/middleware'
+
+const useStore = create(persist(
+    (set) => ({
+        theme: 'light',
+        setTheme: (theme) => set({ theme })
+    }),
+    {
+        name: 'theme-storage',
+        getStorage: () => sessionStorage
+    }
+))
+```
+
+
+
+Here ends the basic use of Zustand to manage states. Thank you for reading, Shukriya 💐

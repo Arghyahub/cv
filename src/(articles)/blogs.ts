@@ -85,6 +85,18 @@ const allBlogs: BlogListType[] = [
         ],
         date: "31-08-2024",
       },
+      {
+        title: "Learn-how-to-use-Zustand",
+        desc: "How to use Zustand in reactJs, Learn Zustand from beginner to advance level. Learn Zustand hooks, how to change states programmatically, setup Zustand.",
+        path: "reactjs/zustand.mdx",
+        contents: [
+          "setup",
+          "retrieving-state-and-updating-state",
+          "immer-middleware",
+          "persistent-states",
+        ],
+        date: "31-08-2024",
+      },
     ],
   },
 ];
