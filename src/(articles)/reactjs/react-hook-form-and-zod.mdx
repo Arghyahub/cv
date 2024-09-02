@@ -1,0 +1,268 @@
+React Hook Form and Zod match made in heaven. React Hook Form is a library that helps you to manage forms in React. Zod is a library that helps you to validate data in JavaScript. In this blog, I will show you how to use Zod with React Hook Form.
+
+#### Why use React Hook Form? Why can't I use normal form handling in React?
+
+Handling Forms in react is a bit complex, you have to manage the state of the form, validate the form, and then submit the form. React Hook Form simplifies this process by providing a simple API to manage forms.
+While you are managing form states, whenever a person types his data the states changes and the component re-renders, this can be a performance issue. React Hook Form solves this by using `uncontrolled components`.
+
+#### Why use Zod? Why can't I use normal validation in React?
+
+As form size grows its very hard to validate data manually, Zod provides a simple API to validate data. It also provides a way to validate nested data and provides a way to validate data asynchronously.
+
+#### But I'm using Typescript, why can't I use Typescript to validate data?
+
+Typescript is a compile-time type checker, it can't validate data at runtime. Zod provides a way to validate data at runtime. In simple words Typescript can validate data types written in code but Zod can validate data generated while running the code, like user input etc.
+
+# Setup
+
+First, you need to install React Hook Form and Zod.
+
+```bash
+npm install react-hook-form zod @hookform/resolvers
+```
+
+# Usage
+
+I'll be using Typescript in this blog, you can use Javascript as well.
+
+Form without using Zod and React Hook Form
+
+```tsx
+import React, { useState } from "react";
+
+export default function App() {
+    const [email, setEmail] = useState("");
+    const [emailErr, setEmailErr] = useState("");
+    const [age, setAge] = useState(0);
+    const [ageErr, setAgeErr] = useState("");
+
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        if (!email || !email.includes("@")){
+            setEmailErr("Invalid email");
+            return;
+        }
+        if (age < 18){
+            setAgeErr("Age should be greater than 18");
+            return;
+        }
+        console.log(email, age);
+    }
+
+    return (
+        <form
+            onSubmit={handleSubmit}
+            style={{ display: "flex", flexDirection: "column", gap: "4px" }}
+        >
+            <label>Email</label>
+            <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
+            {emailErr.length>0 && <p style={{color: 'red'}}>{emailErr}</p>} {/* Show error */}
+
+            <label>Age</label>
+            <input type="number" value={age} onChange={(e) => setAge(parseInt(e.target.value))} />
+            {ageErr.length>0 && <p style={{color: 'red'}}>{ageErr}</p>}    {/* Show error */}
+
+            <button type="submit">Submit</button>
+        </form>
+    );
+}
+``` 
+
+See in the above example we are maintaining so many states and checking for errors manually. This can be a bit complex when the form size grows. For smaller forms this is a good approach but for larger forms managing so many states and the performance issue can be a problem.
+
+### Now let's see how we can use React Hook Form and Zod to simplify this process.
+
+```tsx {2-3,6-9,12-14,22} /{...register("email")}/ /{...register("age", {valueAsNumber: true})}/
+import React from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+
+const schema = z.object({
+    email: z.string().email(),
+    age: z.number().min(18),
+});
+
+export default function App() {
+    const { register, handleSubmit, formState: { errors } } = useForm({
+        resolver: zodResolver(schema)
+    });
+
+    const onSubmit = (data: any) => {
+        console.log(data);
+    }
+
+    return (
+        <form
+            onSubmit={handleSubmit(onSubmit)}
+            style={{ display: "flex", flexDirection: "column", gap: "4px" }}
+        >
+            <label>Email</label>
+            <input type="text" {...register("email")} />
+            {errors.email && <p style={{color: 'red'}}>{errors.email.message}</p>}
+
+            <label>Age</label>
+            <input type="number" {...register("age", {valueAsNumber: true})} />
+            {errors.age && <p style={{color: 'red'}}>{errors.age.message}</p>}
+
+            <button type="submit">Submit</button>
+        </form>
+    );
+}
+```
+
+And thats it, a simple validation using Zod and React Hook Form. This is a simple example, you can use Zod to validate nested data, validate data asynchronously, and much more. 
+
+#### If you are using Typescript and want to infer the types from schema you can use 
+
+```tsx caption="This way you can infer the types from the zod schema"
+type FormType = z.infer<typeof schema>;
+```
+
+# Steps
+
+Lets look at the steps once again.
+
+1. Import `useForm` from `react-hook-form`, `zodResolver` from `@hookform/resolvers/zod`, and `z` from `zod`.
+
+```tsx
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+```
+
+2. Create a schema using Zod.
+
+```tsx
+const schema = z.object({
+    email: z.string().email(),
+    age: z.number().min(18),
+});
+```
+
+3. Use `useForm` and pass the schema to the `resolver` key.
+
+```tsx {2}
+const { register, handleSubmit, formState: { errors } } = useForm({
+    resolver: zodResolver(schema)
+});
+```
+
+4. Use `register` to register the input fields.
+
+```tsx {6-9,12-14}
+<input type="text" {...register("email")} />
+<input type="number" {...register("age", {valueAsNumber: true})} />
+```
+
+5. Use `errors` to show the error message.
+
+```tsx {11-13}
+{errors.email && <p style={{color: 'red'}}>{errors.email.message}</p>}
+{errors.age && <p style={{color: 'red'}}>{errors.age.message}</p>}
+```
+
+6. Use `handleSubmit` to submit the form.
+
+```tsx {2}
+<form
+    onSubmit={handleSubmit(onSubmit)}
+>
+// ...
+```
+
+That was simple.
+
+# Handling server errors
+
+If you are sending data to the server and server throws an error you can handle it with `setError` function to show the error message.
+
+```tsx {2-3,6-9,12-14,22} /{...register("email")}/ /{...register("age", {valueAsNumber: true})}/
+import React from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+
+const schema = z.object({
+    email: z.string().email(),
+    age: z.number().min(18),
+});
+
+export default function App() {
+    const { register, handleSubmit, formState: { errors }, setError } = useForm({
+        resolver: zodResolver(schema)
+    });
+
+    const onSubmit = async (data: any) => {
+        try {
+            // Call the server to validate data
+            // If the data is invalid set the error
+            setError("email", { message: "Email already exists" });
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    return (
+        <form
+            onSubmit={handleSubmit(onSubmit)}
+            style={{ display: "flex", flexDirection: "column", gap: "4px" }}
+        >
+            <label>Email</label>
+            <input type="text" {...register("email")} />
+            {errors.email && <p style={{color: 'red'}}>{errors.email.message}</p>}
+
+            <label>Age</label>
+            <input type="number" {...register("age", {valueAsNumber: true})} />
+            {errors.age && <p style={{color: 'red'}}>{errors.age.message}</p>}
+
+            <button type="submit">Submit</button>
+        </form>
+    );
+}
+```
+
+#### Say you have a global error message that you want to show when the server returns an error you can use the `setError` function with root as the name.
+
+```tsx
+setError("root", { message: "Server error" });
+```
+
+and show the error message like this
+
+```tsx
+{errors.root && <p style={{color: 'red'}}>{errors.root.message}</p>}
+```
+
+# Handling submitting state
+
+If you want to show a loading spinner when the form is submitting you can use the `isSubmitting` property from `formState`.
+
+```tsx  "isSubmitting"
+const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm({
+    resolver: zodResolver(schema)
+});
+```
+
+And show the spinner or disable the submit button like this.
+
+```tsx  "isSubmitting"
+<button type="submit" disabled={isSubmitting}>Submit</button>
+```
+
+# Showing custom error messages
+
+If you want to show custom error messages you can use the `message` key in the schema.
+
+```tsx
+const schema = z.object({
+    email: z.string().email("Invalid email"),
+    age: z.number().min(18, "Age should be greater than 18"),
+});
+```
+
+# Conclusion
+
+React Hook Form and Zod can make your forms robust and easy to manage. This was a simple tutorial on how to use Zod with React Hook From. There are tons of features in React Hook Form and I would recommend you to read more about [Zod](https://zod.dev/) and [React Hook Form](https://react-hook-form.com/) to explore more such amazing features.
+
+Bye Bye 👋

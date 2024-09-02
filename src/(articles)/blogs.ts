@@ -97,6 +97,21 @@ const allBlogs: BlogListType[] = [
         ],
         date: "31-08-2024",
       },
+      {
+        title: "ReactHookForm-and-Zod",
+        desc: "How to use ReactHookForm and Zod in reactJs, Learn ReactHookForm and Zod from beginner to advance level. Learn ReactHookForm hooks, how to validate forms, setup ReactHookForm.",
+        path: "reactjs/react-hook-form-and-zod.mdx",
+        contents: [
+          "setup",
+          "usage",
+          "steps",
+          "handling-server-errors",
+          "handling-submitting-state",
+          "showing-custom-error-messages",
+          "conclusion",
+        ],
+        date: "03-09-2024",
+      },
     ],
   },
 ];
