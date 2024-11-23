@@ -1,0 +1,57 @@
+As much as you learn and grow experience you will understand that backend is not about querying database and sending to frontend, there is a lot more to it. In this article, we will discuss how backend works and what are the different components of backend.
+
+# Why do we need a backend?
+Backend acts as the brain of the application. It is responsible for many things:
+
+# Handling Business Logic
+
+Yeah Backend is where the business logic of the application resides. It is responsible for processing the data and making decisions based on that data. Many a times you will be asked to implement some complex business logic and as much as you implement it you will understand more about the business.
+
+As you go you start to structure the logic and connect similar ideas together. As you think of a idea, the idea can be ambiguous but looking for relations and connections will help you to structure the logic.
+
+# Database and Data Management
+
+If you don't have a database, where will you persist required data? Keeping data with individual clients(App or Website) is not possible. What if they delete their data or how will you manage and filter that data?
+
+Backend make it possible to store data.
+
+#### But why don't we make the database public? or make Database calls from the frontend 
+
+- **Security**: You don't want to expose your database to the world. If you make your database public, anyone can access it and can do anything with it. You don't want that.
+
+- **Data Management**: You want to manage your data in a structured way. You want to filter, sort, and manage who sees and access what from your data. You can't do that from the frontend directly.
+
+- **Data Validation**: You want to validate the data before storing it in the database. You can't do that from the frontend.
+
+- **Data Security**: You want to secure your data. You can't do that from the frontend.
+
+- **Data Privacy**: You want to keep your data private. You can't do that from the frontend.
+
+# Communication with other services
+
+As projects grow, you will need to communicate with other services. For example, you might need to send an email, or you might need to send a message to a queue, or you might need to send a message to another service.
+
+Say I have two different projects needing the same email service, would I write the same code in both projects? No, I will write a common service that can be used by both projects.
+
+Not only that If I wish to use some 3rd party service, I will require a backend to establish a communication between all the nodes.
+
+Also the fact that Frontend will require data from database and backend will be responsible for fetching that data. Back to the 1st line of this article😂.
+
+# Security
+
+Security is a big concern for any application. You don't want to expose your data to the world. You don't want to expose your business logic to the world. 
+
+Somethings you want to keep private and secure and backend is the place where you can do that.
+
+Starting from user management to user access management. Deciding what user can access what data and what user can do what operation. So you have to be very careful about conditions while creating backend of an application.
+
+# Scalibility and Integrations
+These two are the most important aspects of backend. You want to make sure that your backend is scalable and can handle a large number of requests. 
+
+And in future you will also require to integrate with other services. So you have to make sure that your backend is flexible enough to integrate with other services.
+
+These two are very vast topics and require a lot of understanding and experience to master.
+
+
+#### Context for the the next sections
+We will learn backend with ExpressJs, the same logic is applicable everywhere. Lets go🚀. 

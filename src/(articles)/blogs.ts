@@ -114,6 +114,25 @@ const allBlogs: BlogListType[] = [
       },
     ],
   },
+  {
+    topic: "Backend",
+    blogs: [
+      {
+        title: "Learn-Backend-Development",
+        desc: "What is backend development, how to learn backend development, what are the best backend technologies, how to setup a backend project.",
+        path: "backends/how-backend-works.mdx",
+        contents: [
+          "why-do-we-need-a-backend?",
+          "handling-business-logic",
+          "database-and-data-management",
+          "communication-with-other-services",
+          "security",
+          "scalibility-and-integrations",
+        ],
+        date: "24-11-2024",
+      },
+    ],
+  },
 ];
 
 export default allBlogs;
