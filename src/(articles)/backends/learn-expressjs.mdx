@@ -1,0 +1,119 @@
+import apipng from "./api.png"
+import apifunc from "./api-fun.png"
+
+An API is like the waiter in a restaurant. While the **cook**(backend) prepares food the **waiter**(API) serves it to the **customer**(frontend).
+
+<Image src={apipng} />
+
+API stands for Application Programming Interface. It is a set of rules that allows one software application to communicate with another. It defines the methods for requesting and responding to data. At the end of the day, it is how two different systems talk to each other.
+
+We will talk about REST API in this article.
+
+# Structure of an API 
+
+As we discussed above, API is a set of rules that allows one software application to communicate with another. It defines the methods for requesting and responding to data.
+
+When requesting we have 4 things to look at :
+1. **URL** - Uniform Resource Locator
+2. **Method** - GET, POST, PUT, PATCH, DELETE
+4. **Body** - Data to be sent
+3. **Headers** - Metadata about the request
+
+When responding we have 3 things to look at:
+1. **Status Code** - 200, 404, 500
+2. **Headers** - Metadata about the response
+3. **Body** - Data to be 
+
+Lets look at both one by one 
+
+# API Request
+Request is the act of requesting from a server. It is how the client asks the server for some data or some act to be performed.
+
+Components :
+
+### URL 
+It is the address of the server. It is the location where the server is hosted. It is the address where the client wants to send the request.
+
+If you search on youtube, the url would look like 
+``` "https"
+https://www.youtube.com/results?search_query=MrBeast
+```
+
+Here **https** is the protocol **Hyper Text Transfer Protocol**. A protocol is a rule that defines how data is transferred over the internet. 
+
+**www.youtube.com** is the domain name of the server. 
+
+**/results** is the route or path. It is the location where the server will look for the data.
+
+**search_query=MrBeast** is the query parameter. It is the data that the client wants to send to the server.
+
+### Method 
+
+It is the type of request the client wants to make. There are 5 types of methods in HTTP.
+
+1. **GET** - To get data from the server
+2. **POST** - To send data to the server
+3. **PUT** - To update data on the server
+4. **PATCH** - To partially update data on the server
+5. **DELETE** - To delete data on the server
+
+`Remember we can't send payload in GET request and DELETE request`
+~ Confusing, I'll explain it in the next section and also in the next blog
+
+
+### Body
+
+It is the data that the client wants to send to the server. It is the payload of the request. It is the data that the client wants to send to the server.
+
+Whenever you are making a request, you will have some data that you want to send to the server. That data is sent in the body of the request. The servery may read the data and then perform some action based on that data.
+
+Maybe you can pass an `id` to get the data of that `id` from the server. Or you can pass the data to be stored in the server.
+
+Mostly we send data in JSON format. It is a key-value pair format. Why use it? Because we can serialize a Javascript object into JSON string while sending and deserialize it back to Javascript object while receiving.
+
+### Headers
+
+It is the metadata about the request. It is the data about the data. It is the data that tells the server about the request. It is the data that tells the server about the client.
+
+Headers are key-value pairs. They are used to send additional information to the server.
+
+Some common headers are `Content-Type`, `Authorization`, `Accept`, `User-Agent`, `Cache-Control`, `Cookie` etc.
+
+# API Response
+
+Response is the act of responding to a request. It is how the server responds to the client request.
+
+Components :
+
+### Status Code
+
+It is the code that tells the client about the status of the request. It can be defined as the code that defines the receiver what happened with the request, If its received, rejected, or denied etc.
+
+There are many status codes in HTTP. Some common ones are:
+
+- 200 to 299 - *Success*
+- 300 to 399 - *Redirection*
+- 400 to 499 - *Client Error*
+- 500 to 599 - *Server Error*
+
+Ew, random numbers I have to remember? Nah, I have a website that makes it all easy [Status-Pizza](https://status.pizza/).
+
+My favorite ones are [418](https://status.pizza/418) [412](https://status.pizza/420)
+
+### Headers
+
+The same as request headers, these are the metadata about the response. It is the data about the data. It is the data that tells the client about the response.
+
+### Body 
+
+It is the data that the server sends to the client. It is the payload of the response. It is the data that the server wants to send to the client.
+
+# Conclusion
+
+What API is in a single picture :
+
+<Image src={apifunc} />
+
+Yay, we have learned about API. But its too much yada yada, lets actually code API's and actually understand it.
+
+If you didn't get anything, don't worry. We will practically code everything in the next blog ✌️. 

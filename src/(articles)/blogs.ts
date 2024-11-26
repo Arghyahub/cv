@@ -118,7 +118,7 @@ const allBlogs: BlogListType[] = [
     topic: "Backend",
     blogs: [
       {
-        title: "Learn-Backend-Development",
+        title: "Why Backend",
         desc: "What is backend development, how to learn backend development, what are the best backend technologies, how to setup a backend project.",
         path: "backends/how-backend-works.mdx",
         contents: [
@@ -130,6 +130,18 @@ const allBlogs: BlogListType[] = [
           "scalibility-and-integrations",
         ],
         date: "24-11-2024",
+      },
+      {
+        title: "What-is-an-API",
+        desc: "Learn ExpressJs from beginner to advance level. Learn ExpressJs middlewares, routes, controllers, models, services, etc.",
+        path: "backends/learn-expressjs.mdx",
+        contents: [
+          "structure-of-an-api",
+          "api-request",
+          "api-response",
+          "conclusion",
+        ],
+        date: "26-11-2024",
       },
     ],
   },
