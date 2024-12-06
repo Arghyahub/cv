@@ -1,0 +1,62 @@
+Databases are very fascinating, If I had to explain databases, it would require its own section of articles covering different databases, their properties, indexing, B Trees, B+ Trees, storing data in memory, maintaining data consistency, ACID properties, and many more. 
+
+But to use databases with Javascript, you don't require all of that (Surely will help) but to get started, a basic understanding of databases and Javascript objects is enough.
+
+# What is a Database?
+
+A database is a collection of data. It is a place where you can store data. It is a place where you can create, update, read and delete data. The data is persistent and can be accessed and queried anytime.
+
+But why do we need a database?
+
+Remember, you can store values in variables, but what if you stop the program? The data will be lost. You can store data in files.
+
+But then why can't we store data in files? I had the same question when I started, I learned how to use csv with Python and it felt like a table and I was curious why can't I use that?
+
+The answer lies in the implementation, to read data from a file, you have to read the whole file and then search for the data. You have to write very low level code to access data by row and column. And to optimize the operation is even trickier.
+
+A database helps use to store data in a structured way. It helps us to query data in a structured way. It helps us to manage data in a structured way and its very optimized.
+
+# Types of Databases
+
+There are many types of databases. Some common ones are:
+
+1. **SQL Databases** - SQL databases are relational databases. They store data in tables. They are very structured and follow a schema. They are very good for structured data.
+
+2. **NoSQL Databases** - NoSQL databases are non-relational databases. They store data in documents, key-value pairs, graphs, etc. They are very flexible and can store unstructured data.
+
+3. **In-memory Databases** - In-memory databases store data in memory. They are very fast but the data is lost when the server is stopped.
+
+4. **Graph Databases** - Graph databases store data in nodes and edges. They are very good for storing relationships.
+
+SQL and NoSQL Databases are very famous. SQL databases are very good for structured data and NoSQL databases are very good for unstructured data.
+
+When we are working with ORM's we don't have to think a lot about the database, but I'll recommend to dive deeper and look at your requirements and choose the database accordingly.
+
+# Btw what is an ORM
+
+ORM stands for Object Relational Mapping. It is a technique to map objects to tables and vice versa. It helps us to interact with the database using objects. It helps us to write queries in the language we are comfortable with.
+
+In short all you conditions can be written in object notation and the ORM will convert it to DB query and fetch the data for you.
+
+# Creating a Table
+
+To continue further you will have to setup Prisma ORM [referred here](/blog/setup/Prisma)
+
+In your schema.prisma file, you can define a simple model like this:
+```prisma
+model User {
+  id    Int    @id @default(autoincrement())
+  name  String
+  email String
+}
+```
+
+# CRUD Operations
+
+Basic operation that is visible in any application is **CRUD**:
+* Create 
+* Read
+* Update
+* Delete
+
+Let's learn how to perform these operations with Prisma ORM.

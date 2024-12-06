@@ -47,7 +47,7 @@ const page = async ({ params }: Props) => {
   // }
   // ======== x ==========
   const Component = dynamic(() =>
-    import(`@/(articles)/${blogData.path}`).catch((err) => {
+    import(`@/(articles)/${blogData.path.slice(2)}`).catch((err) => {
       return notFound();
     })
   );

@@ -1,0 +1,172 @@
+Prisma is a wonderful ORM and it is very easy to setup. You can use Prisma with any database. Prisma is a type-safe database client. It helps you to write queries in your language and it converts it to SQL queries.
+
+# Basic Project Setup 
+
+If you look at my previous article on [Setting up Express](/blog/setup/express), I'm using a specific folder structure. I'll be using the same folder structure here. 
+
+```md
+*
+|--- src
+|    |--- db
+|    |    |--- schema.prisma
+|    |--- app.ts
+```
+
+You can checkout my previous article [Setting up Express](/blog/setup/express) to setup a project with javascript or typescript.
+
+# Prisma Setup
+
+First, you need to install Prisma globally.
+
+```bash
+npm install prisma
+```
+
+Then, you need to initialize Prisma in your project.
+
+```bash
+npx prisma init
+```
+
+This will create a `prisma` folder in your project. Inside the `prisma` folder, you will find a `schema.prisma` file. This is where you define your database schema.
+
+# Database Connection
+
+Overall you have two choices either you can use a SQL based database or a NoSQL based database.
+[Here is the official doc](https://www.prisma.io/docs/getting-started#choose-an-option-to-get-started-with-your-own-database) I'll show you how to work with MongoDB and Postgres, which are the two popular choices.
+
+In the `prisma/schema.prisma` file, you can define your database connection.
+
+The file looks like this 
+
+```prisma
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+```
+
+The **provider** is the type of database you are using. In this case, it is **"postgresql"**. You can change it to **"mongodb"** if you are using MongoDB.
+
+The url comes from the environment variable. You can set the environment variable in a `.env` file.
+
+```js
+DATABASE_URL="postgresql://user:password@localhost:5432/dbname"
+```
+
+## Now define a model
+
+You can define your model in the `schema.prisma` file. Here is an example of a user model.
+
+```prisma
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  name      String?
+  posts     Post[]
+}
+```
+
+# Query database with Prisma Client
+
+Prisma Client is a type-safe database client. It helps you to write queries in your language and it converts it to SQL queries.
+
+Install the client
+
+```bash
+npm install @prisma/client
+```
+
+You will have to generate the client. You can do this by running the following command.
+
+```bash
+npx prisma generate
+```
+This will prepare the client for you. You can now use the client to query the database.
+
+Now setup the client object as per the documentation. I like to do it inside `db/prisma-client.ts`
+
+```ts caption="Remove types for js implementation"
+import { PrismaClient } from "@prisma/client";
+
+const globalForPrisma = globalThis as unknown as { prisma: PrismaClient };
+
+export const prisma = globalForPrisma.prisma || new PrismaClient();
+
+if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
+
+```
+
+Now you can import the client and directly use it like this :
+
+```js
+import { prisma } from "./db/prisma-client";
+
+const main = async () => {
+  const user = await prisma.user.count();
+  console.log("User count: ", user);
+};
+
+main();
+```
+
+# SQL vs NoSQL and Docker Images
+
+There is a slight difference in the connection setup for SQL and NoSQL databases.
+
+SQL or relational databases require a table structure and needs to be migrated before you can use it. You can use the following command to migrate the database.
+
+```bash
+npx prisma migrate dev
+```
+
+This will create the tables in the database or update the existing table. **The step is not required for non relational databases like MongoDB.**
+
+## MongoDB
+
+If you don't have MongoDB installed, you can use the docker image. You can run the following command to start a MongoDB instance.
+
+```bash
+docker run -d -p 27017:27017 --name mongodb mongo
+```
+
+If you are using MongoDB, you can define the connection like this.
+
+```prisma caption="test is the database name"
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL") || "mongodb://localhost:27017/test"
+}
+```
+
+
+## Postgres
+
+If you don't have Postgres installed, you can use the docker image. You can run the following command to start a Postgres instance.
+
+```bash
+docker run -d -p 5432:5432 --name postgres -e POSTGRES_PASSWORD=password postgres
+```
+
+If you are using Postgres, you can define the connection like this.
+
+```prisma caption="test is the database name"
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL") || "postgresql://postgres:password@localhost:5432/test"
+}
+```
+
+Prisma is a wonderful ORM and it is very easy to setup. You can use Prisma with many databases, it makes querying databases easier and is widely used. Enjoy using Prisma!
