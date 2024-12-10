@@ -148,7 +148,15 @@ const allBlogs: BlogListType[] = [
         title: "Working-with-Databases",
         desc: "Learn databases from beginner to advance level. Learn databases types, how to setup a database, how to connect a database with backend.",
         path: "./backends/working-with-database.mdx",
-        contents: [],
+        contents: [
+          "what-is-a-database",
+          "types-of-databases",
+          "btw-what-is-an-orm",
+          "creating-a-table",
+          "crud-operations",
+          "keys-in-dbms",
+          "relationships-in-dbms",
+        ],
         date: "26-11-2024",
       },
       {

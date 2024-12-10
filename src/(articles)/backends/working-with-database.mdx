@@ -2,7 +2,7 @@ Databases are very fascinating, If I had to explain databases, it would require 
 
 But to use databases with Javascript, you don't require all of that (Surely will help) but to get started, a basic understanding of databases and Javascript objects is enough.
 
-# What is a Database?
+# What is a Database
 
 A database is a collection of data. It is a place where you can store data. It is a place where you can create, update, read and delete data. The data is persistent and can be accessed and queried anytime.
 
@@ -40,7 +40,7 @@ In short all you conditions can be written in object notation and the ORM will c
 
 # Creating a Table
 
-To continue further you will have to setup Prisma ORM [referred here](/blog/setup/Prisma)
+To continue further you will have to setup Prisma ORM [referred here](/blog/setup/prisma)
 
 In your schema.prisma file, you can define a simple model like this:
 ```prisma
@@ -51,6 +51,8 @@ model User {
 }
 ```
 
+`@id @default(autoincrement())` - This is a directive that tells the ORM that this field is the primary key and it will autoincrement.
+
 # CRUD Operations
 
 Basic operation that is visible in any application is **CRUD**:
@@ -60,3 +62,390 @@ Basic operation that is visible in any application is **CRUD**:
 * Delete
 
 Let's learn how to perform these operations with Prisma ORM.
+
+## Create 
+
+To create a new user, you can use the `create` method. The `create` method will create a new record in the database.
+
+```js "create"
+const user = await prisma.user.create({
+  data: {
+    name: 'Alice',
+    email: 'Alice405@gmail.com'
+  }
+})
+```
+
+If you want to create many records at once, you can use the `createMany` method.
+
+```js
+const users = await prisma.user.createMany({
+  data: [
+    {
+      name: 'Alice',
+      email: 'Alice404@gmail.com'
+    },
+    {
+      name: 'Bob',
+      email: 'Bob40k@gmail.com'
+    }
+  ]
+})
+```
+
+## Read
+
+What is the use of creating data if you can't read it?😅
+
+Even when you are creating or updating data the object returned is the same as the object you have created. This is because the ORM is returning the object from the database.
+
+But if you want to read data from the database, you can use functions like `findUnique`, `findMany`, `findFirst`, etc.
+
+```js caption="Will print { id: 1, name: 'Alice', email: 'Alice404@gmail.com' }"
+const user = await prisma.user.findFirst({
+  where: {
+    email: "Alice404@gmail.com"
+  }
+})
+
+console.log(user)
+```
+
+What if you have a big model and don't want to fetch all the data? You can use the `select` method to select only the required fields.
+
+```js caption="Will print { id: 1, name: 'Alice' }"
+const user = await prisma.user.findFirst({
+  where: {
+    email: "Alice404@gmail.com"
+  },
+  select: {
+    id: true,
+    name: true
+  }
+})
+console.log(user)
+```
+
+Similarly you can use `findMany` to fetch multiple records.
+
+```js caption="Will print [{ id: 1, name: 'Alice' }, { id: 2, name: 'Bob' }]"
+const users = await prisma.user.findMany({
+  select: {
+    id: true,
+    name: true
+  }
+})
+console.log(users)
+```
+
+You will learn about `findUnique` in the [Keys in DBMS](#primary-key) section.
+
+## Update
+
+To update a record in the database, you can use the `update` method.
+
+```js caption="Will update the name from 'Alice' to 'Alice in Wonderland'"
+const user = await prisma.user.update({
+  where: {
+    id: 1
+  },
+  data: {
+    name: 'Alice in Wonderland'
+  }
+})
+console.log(user)
+```
+
+Just like that you can do `updateMany` to update multiple records.
+
+## Delete
+
+To delete a record from the database, you can use the `delete` method.
+
+```js caption="Will delete the user with id 1"
+const user = await prisma.user.delete({
+  where: {
+    id: 1
+  }
+})
+```
+
+Just like that you can do `deleteMany` to delete multiple records.
+
+So you got the basic understanding of CRUD, you can write `where` conditions to filter data and `select` to select only the required fields.
+
+# Keys in DBMS
+
+In the database, we have keys to identify the records. Keys are the columns that are used to identify the records. There are many types of keys in the database.
+
+1. **Primary Key** - Its unique and not null. It uniquely identifies records or rows in a table. 
+2. **Foreign Key** - It establishes a relationship between two tables. It is a column or a set of columns in a table that references the primary key of another table.
+3. **Composite Key** - It is a combination of two or more columns that uniquely identifies a record.
+4. **Super Key** - It is a set of columns that uniquely identifies a record. Like a composite key but it can have extra columns.
+5. **Candidate Key** - Any key that can be a primary key is a candidate key.
+
+Among these keys, the important ones are 
+
+## Primary Key
+It uniquely identifies a record in a table. Just like your Id is unique and but your name is not. You data can be easily identifies using you ID which is the primary key.
+
+In prisma you can declare a primary key as 
+
+```prisma
+model User {
+  id    Int    @id @default(autoincrement())
+  name  String
+  email String
+}
+```
+
+Here `id` is the primary key.
+
+These are the fields where you can use `findUnique` to fetch data as the row is uniquely identified by the id.
+
+## Foreign Key
+It establishes a relationship between two tables. Just like you have a relationship with your parents, the foreign key establishes a relationship between two tables. You are a `USER` and you have a `POST` so the `USER` table will have a `post_id` which will be a foreign key to the `POST` table.
+
+In prisma you can declare a foreign key as 
+
+```prisma {6}
+model User {
+  id    Int    @id @default(autoincrement())
+  name  String
+  email String
+  post  Post   @relation(fields: [postId], references: [id])
+  postId Int
+}
+
+model Post {
+  id    Int    @id @default(autoincrement())
+  title String
+  body  String
+}
+```
+
+Here `postId` is the foreign key.
+
+Here we will learn another selector `include` which will help us to fetch the related data.
+
+```js caption="Will print { id: 1, name: 'Alice', email: 'Alice404@gmail.com', post: { id: 1, title: 'Hello', body: 'Hello World' } }" {5-7}
+const user = await prisma.user.findFirst({
+  where: {
+    name: "Alice"
+  },
+  include: {
+    post: true
+  }
+})
+console.log(user)
+```
+
+Here by writing `include` we are telling the ORM that I want to fetch data from the `post` table along with the `user` table.
+You can also do it inside the `select` in prisma.
+
+## Candidate Key
+Say you can make email as unique then it can also be used to identify a record uniquely. So it can be a candidate key.
+
+```prisma {4} 
+model User {
+  id    Int    @id @default(autoincrement())
+  name  String
+  email String @unique
+}
+```
+
+## Composite Key
+This is very interesting, you can have a combination of columns that can uniquely identify a record. When I started coding I used to think why is it important but when you work with a big database you will understand the importance of it.
+
+
+```prisma {5}
+model User {
+  id    Int    @id @default(autoincrement())
+  name  String
+  email String
+  @unique(["name", "email"])
+}
+```
+
+Real life example:
+A student giving exam has his studentId and examId, now the combination of these two will uniquely identify the the answer sheet.
+
+Great job, you have learned about important keys and understand their importance. You are now able to identify individual records and now we will learn how to establish relationships between tables.
+
+# Relationships in DBMS
+
+We have discussed about `select` and `include` and how to form basic relationship between tables, Now we will dive deeper into relationships.
+
+There are many types of relationships in the database. Some common ones are:
+1. **One to One** - One record in a table is related to one record in another table.
+2. **One to Many** - One record in a table is related to many records in another table.
+4. **Many to One** - Many records in a table are related to one record in another table.
+3. **Many to Many** - Many records in a table are related to many records in another table.
+
+## One to One
+
+One to one relationship is when one record in a table is related to one record in another table. Just like you have a government Id and it is unique to you and a passport number linked to your government Id.
+
+In prisma you can declare a one to one relationship as 
+
+```prisma "passport_id Int" "@relation(fields: [passport_id], references: [id])" "id    Int"
+model User {
+  id          Int      @id @default(autoincrement())
+  name        String
+  email       String
+  passport_id Int
+  passport    Passport @relation(fields: [passport_id], references: [id])
+}
+model Passport {
+  id    Int    @id @default(autoincrement())
+  number String
+}
+```
+
+Here `passport_id` is the foreign key linking the `User` table to the `Passport` table. You can check how to query this data in the [above section](#foreign-key).
+
+`@relation(fields: [passport_id], references: [id])` in Users table tells that the field passport_id in the User table is related to the id field in the Passport table.
+
+## One to Many
+
+One to many relationship is when one record in a table is related to many records in another table. Just like you have one user and he can have many posts.
+
+In prisma you can declare a one to many relationship as 
+
+```prisma
+model User {
+  id    Int      @id @default(autoincrement())
+  name  String
+  email String
+  posts Post[]
+}
+model Post {
+  id      Int    @id @default(autoincrement())
+  title   String
+  body    String
+  userId  Int
+  user    User   @relation(fields: [userId], references: [id])
+}
+```
+
+Here userId is the foreign key linking the `Post` table to the `User` table. Take a look at the type of `posts` in the `User` model. It is an array of `Post` models. An array of something means it can be multiple, thus `posts Post[]` means user table can have multiple posts shown as array of posts.
+
+## Many to One
+
+Many to one relationship is when many records in a table are related to one record in another table. Just like many users can earn freelance income from multiple clients.
+
+In prisma you can declare a many to one relationship as 
+
+```prisma
+model Client {
+  id    Int    @id @default(autoincrement())
+  name  String
+  email String
+  userId Int
+  user   User   @relation(fields: [userId], references: [id])
+}
+model User {
+  id    Int      @id @default(autoincrement())
+  name  String
+  email String
+  client Client[]
+}
+```
+
+Looks similar to One to Many, yes it is the reverse of One to Many.
+
+## Many to Many
+
+Many to many relationship is when many records in a table are related to many records in another table. Just like many students can enroll in many courses and many courses can have many students.
+
+This is a bit tricky, there are two ways to implement many to many relationship. 
+
+One is using a junction(relationship) table which is commonly used to SQL bases DB's or by using an array of ids which is used in MongoDB primarily.
+
+##### A) Using relationship table
+
+In prisma you can declare a many to many relationship as 
+
+```prisma "courseRelations CourseUserRelation[]" "userRelations   CourseUserRelation[]" "userId" "courseId"
+model User {
+  id              Int                   @id @default(autoincrement())
+  name            String
+  email           String 
+  courseRelations CourseUserRelation[]
+}
+model Course {
+  id              Int                   @id @default(autoincrement())
+  name            String
+  userRelations   CourseUserRelation[]
+}
+model CourseUserRelation {
+  userId           Int                  @id
+  courseId         Int                  @id
+  user             User                 @relation(fields: [userId], references: [id])
+  course           Course               @relation(fields: [courseId], references: [id])
+}
+```
+
+Can be queried like
+
+```js
+const user = await prisma.user.findFirst({
+  where: {
+    name: "Alice"
+  },
+  select: {
+    courseRelation: {
+      select: {
+        course: true
+      }
+    }
+  }
+})
+
+console.log("user", user.name)
+console.log("courses", user.courseRelation)
+```
+
+I prefer the relationship table as it is more structured and faster to query.
+
+##### B) Using array of ids
+
+In prisma you can declare a many to many relationship as 
+
+```prisma "courses         Int[]" "users           Int[]"
+model User {
+  id              Int                   @id @default(autoincrement())
+  name            String
+  email           String 
+  courses         Int[]
+}
+model Course {
+  id              Int                   @id @default(autoincrement())
+  name            String
+  users           Int[]
+}
+```
+
+Here `courses` in the `User` model and `users` in the `Course` model are arrays of integers. These arrays contain the ids of the related records.
+
+
+Can be queried like
+
+```js
+const user = await prisma.user.findFirst({
+  where: {
+    name: "Alice"
+  },
+  select: {
+    courses: true
+  }
+})
+```
+
+While inserting you have to keep the record of both the table ids in both the table relation arrays in order to query the data from both the tables.
+
+And you are done, you have learned how to model and query databases with relationships. You can now create complex queries and fetch data from multiple tables. Working and handling with databases will be one of the most important tasks you will do as a backend developer.
+
+You can next learn more about `orderBy`, `groupBy`, `pagination`, these are important for sorting and querying data in chunks.
+
+Now we are fully prepared to start working with databases in our backend application.
