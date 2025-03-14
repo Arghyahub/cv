@@ -46,7 +46,7 @@ const Skills = () => {
                 key={`techdiv-${index}`}
                 className="flex flex-col justify-center items-center gap-2 w-full overflow-hidden"
               >
-                <div className="flex flex-row justify-center items-center bg-white mx-4 rounded-full img-wrap size-20 md:size-24">
+                <div className="flex flex-row justify-center items-center bg-white mx-4 rounded-full size-20 md:size-24 img-wrap">
                   <Image
                     width={50}
                     height={50}
@@ -63,7 +63,7 @@ const Skills = () => {
       )}
 
       <button
-        className="my-2 text-indigo-600 text-lg underline"
+        className="my-2 text-indigo-600 text-md underline"
         onClick={() => setShowAll((prev) => !prev)}
       >
         {ShowAll ? "Back" : "Show all"}

@@ -12,6 +12,10 @@ const tech = [
     name: "Reactjs",
   },
   {
+    image: "/images/skills/nextjs.png",
+    name: "Nextjs",
+  },
+  {
     image: "/images/skills/nodejs.png",
     name: "Nodejs",
   },
@@ -30,6 +34,14 @@ const tech = [
   {
     image: "/images/skills/mysql.png",
     name: "Sql",
+  },
+  {
+    image: "/images/skills/redis.png",
+    name: "Redis",
+  },
+  {
+    image: "/images/skills/prisma.png",
+    name: "Prisma",
   },
   {
     image: "/images/skills/graphql.png",

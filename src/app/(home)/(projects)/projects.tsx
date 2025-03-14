@@ -51,7 +51,7 @@ const Projects = () => {
             key={`cat${ind}`}
             onClick={() => handleCategorySelect(cat)}
             className={cn(
-              "hover:bg-[#313bac] hover:text-white shadow-md hover:shadow-xl px-1 py-1 lg:px-2 border border-black rounded-lg min-w-12 md:min-w-20 text-black text-xs md:text-sm lg:text-lg capitalize",
+              "hover:bg-[#313bac] hover:text-white transition-colors shadow-md hover:shadow-xl px-1 py-1 lg:px-2 border border-black rounded-lg min-w-12 md:min-w-20 text-black text-xs md:text-sm lg:text-lg capitalize",
               {
                 "bg-[#313bac] text-white":
                   projectType.toLowerCase() === cat.toLowerCase(),
@@ -71,7 +71,7 @@ const Projects = () => {
         onClick={() =>
           setOffset((prev) => Math.min(prev + 4, projectApi.length))
         }
-        className={cn("bg-[#313bac] mx-auto px-4 py-3 rounded-lg text-white", {
+        className={cn("common-shadow bg-[#313bac] hover:bg-[#414fe6] transition-colors mx-auto px-4 py-3 rounded-lg text-white", {
           "disabled opacity-80 cursor-not-allowed": disableButton,
         })}
       >
