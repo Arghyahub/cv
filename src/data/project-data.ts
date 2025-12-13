@@ -1,6 +1,14 @@
 const Category = ["all", "mern stack", "reactjs", "html,css,js", "AiML"];
 const projectApi = [
   {
+    name: "SprintMaster",
+    category: "mern stack",
+    image: "/images/projects/sprintMaster.png",
+    desc: "Kanban based sprint and team management system.",
+    link: "https://sprint-master.vercel.app/",
+    github: "https://github.com/Arghyahub/SprintMaster",
+  },
+  {
     name: "Pushnote",
     category: "mern stack",
     image: "/images/projects/pushnote.jpg",

@@ -21,16 +21,12 @@ const About = () => {
         <div className="flex flex-col lg:my-4">
           <h1 className="mb-2 sm:mb-4 font-semibold text-xl">About me</h1>
           <p>
-            I&apos;m originally from Assam, currently persuing Bachelor of
-            Technology in Computer Science Engineering from Netaji Subhash
-            Engineering College. In my free time I like to travel, explore new
-            places and sharing a cup of tea with a fascinating stranger is one
-            of my life&apos;s true delights.
+            I&apos;m a software developer who loves exploring new technologies and learning fast along the way. I&apos;m naturally curious, enjoy working across different domains, and adapt easily to new challenges. I like solving problems, building things that work well, and turning ideas into product.
           </p>
           <div className="flex flex-row justify-center items-end mt-4 w-full h-full">
             <a
               href="https://drive.google.com/drive/folders/1bOjPGMVNdS-mNNPoDJjgsVwO7kYEFk9m?usp=drive_link"
-              className="bg-[#22c8e5] hover:bg-[#f7345e] mx-auto mt-4 px-4 py-3 rounded-xl font-semibold text-sm text-white md:text-md transition-colors duration-500"
+              className="bg-[#22c8e5] hover:bg-[#19b3ce] mx-auto mt-4 px-4 py-3 rounded-xl font-semibold text-sm text-white md:text-md transition-colors duration-500"
             >
               Download Resume
             </a>
