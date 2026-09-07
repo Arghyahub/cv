@@ -1,29 +1,22 @@
-import Image from "next/image";
 import React from "react";
 
 const Home = () => {
   return (
-    <div
-      id="home"
-      className="flex flex-col justify-center items-center mt-16 py-3 w-full min-h-[75vh] sm:min-h-[90vh]"
-    >
-      {/* Hi Text */}
-      <h1 className="shadow-lg mt-11 sm:mt-24 px-2 py-1 rounded-md">
-        Hi I&apos;m Arghya 🙋‍♂️
-      </h1>
-      {/* Image Div */}
-      <div className="relative -top-14 sm:-top-20 flex w-full overflow-hidden">
-        <Image
-          src={"/images/personal/mypic.png"}
-          alt="My photo"
-          width={2370}
-          height={1000}
-          className="w-full h-auto object-contain"
-          id="home-image"
-        />
+    <section id="home" className="hero-section">
+      <div className="hero-art hero-art-wide" aria-label="Portrait of Arghya">
+        <div className="hero-copy hero-copy-left">
+          <h1>Hi, I&apos;m Arghya Das.</h1>
+          <p className="hero-intro">
+            A product first engineer building reliable software across frontend, backend, databases,cloud infra & AI.
+          </p>
+        </div>
+        {/* <div className="hero-copy hero-copy-right">
+          <p>System design</p>
+          <p>Product engineering</p>
+          <p>Cloud delivery</p>
+        </div> */}
       </div>
-      {/* Icons */}
-    </div>
+    </section>
   );
 };
 

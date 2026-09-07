@@ -5,13 +5,14 @@ const Footer = () => {
   return (
     <div
       id="contact"
-      className="flex flex-col justify-center items-center gap-6 px-2 py-10"
+      className="flex flex-col justify-center items-center gap-6 bg-slate-50 px-5 py-14"
     >
-      <h1 className="font-semibold text-xl">Thank you for visiting</h1>
-      <div className="flex flex-row justify-between w-full md:w-9/12">
+      <p className="section-label">Contact</p>
+      <h2 className="-mt-3 font-semibold text-2xl text-center">Let&apos;s build something useful.</h2>
+      <div className="contact-links">
         <a
           href="https://www.linkedin.com/in/arghya-das-045702222/"
-          className="flex flex-row items-center gap-1 sm:gap-2 px-2 py-1 text-indigo-500 text-xs sm:text-sm md:text-base lg:text-lg underline text-nowrap"
+          className="contact-link"
         >
           <Image
             width={35}
@@ -24,7 +25,7 @@ const Footer = () => {
         </a>
         <a
           href="https://twitter.com/ArghyaDas04?t=y__VQeQQNNXf-9K37FJUFA&s=09"
-          className="flex flex-row items-center gap-1 sm:gap-2 px-2 py-1 text-indigo-500 text-xs sm:text-sm md:text-base lg:text-lg underline text-nowrap"
+          className="contact-link"
         >
           <Image
             width={35}
@@ -37,7 +38,7 @@ const Footer = () => {
         </a>
         <a
           href="https://github.com/Arghyahub"
-          className="flex flex-row items-center gap-1 sm:gap-2 px-2 py-1 text-indigo-500 text-xs sm:text-sm md:text-base lg:text-lg underline text-nowrap"
+          className="contact-link"
         >
           <Image
             width={35}
@@ -50,7 +51,7 @@ const Footer = () => {
         </a>
         <a
           href="mailto:arghyadas242004@gmail.com"
-          className="flex flex-row items-center gap-1 sm:gap-2 px-2 py-1 text-indigo-500 text-xs sm:text-sm md:text-base lg:text-lg underline text-nowrap"
+          className="contact-link"
         >
           <Image
             width={35}

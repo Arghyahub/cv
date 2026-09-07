@@ -17,6 +17,20 @@ type StaticParam = {
   slug: string[];
 };
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "");
+
+function formatTitle(title: string) {
+  return title
+    .replace(/([a-z])([A-Z])/g, "$1 $2")
+    .replaceAll("-", " ")
+    .replace(/\b\w/g, (character) => character.toUpperCase());
+}
+
+function toIsoDate(date: string) {
+  const [day, month, year] = date.split("-").map(Number);
+  return new Date(Date.UTC(year, month - 1, day)).toISOString();
+}
+
 const page = async ({ params }: Props) => {
   const slug = params.slug;
   if (!slug || slug.length < 2) return notFound();
@@ -64,13 +78,34 @@ const page = async ({ params }: Props) => {
     next: nextPagination(blogTopicIdx, blogTopic, blogIdx),
   };
 
+  const articleUrl = siteUrl
+    ? `${siteUrl}/blog/${encodeURIComponent(blogTopic.topic)}/${encodeURIComponent(blogData.title)}`
+    : undefined;
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: formatTitle(blogData.title),
+    description: blogData.desc,
+    datePublished: toIsoDate(blogData.date),
+    dateModified: toIsoDate(blogData.date),
+    author: { "@type": "Person", name: "Arghya Das" },
+    publisher: { "@type": "Person", name: "Arghya Das" },
+    ...(articleUrl ? { mainEntityOfPage: articleUrl, url: articleUrl } : {}),
+  };
+
   return (
-    <BlogComp
-      data={blogData}
-      pagination={pagination}
-      Component={Component}
-      pageUrl={`${blogTopic.topic}/${blogData.title}`}
-    />
+    <>
+      <BlogComp
+        data={blogData}
+        pagination={pagination}
+        Component={Component}
+        pageUrl={`${blogTopic.topic}/${blogData.title}`}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
+    </>
   );
 };
 

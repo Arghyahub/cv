@@ -10,10 +10,10 @@ const Skills = () => {
   return (
     <div
       id="skills"
-      className="flex flex-col justify-around items-center gap-10 bg-[#edf2f8] px-6 py-10 w-full min-h-[80vh]"
+      className="flex flex-col justify-around items-center gap-10 bg-[#edf2f8] px-6 py-16 w-full min-h-[80vh]"
     >
-      <h1 className="font-bold text-3xl">Skills</h1>
-      <div className="flex flex-row flex-wrap justify-center gap-6 lg:gap-20 text-nowrap">
+      <div className="text-center"><p className="section-label">Toolkit</p><h2 className="mt-2 font-bold text-3xl md:text-4xl">Skills</h2></div>
+      <div className="skill-domains">
         {skillName.map((sName, index) => (
           <div
             key={`skilldiv${index}`}
@@ -39,7 +39,7 @@ const Skills = () => {
           ))}
         </div>
       ) : (
-        <div className="w-full md:w-5/6">
+        <div className="skills-marquee-shell">
           <Marquee pauseOnHover={true} pauseOnClick={true}>
             {tech.map((techs, index) => (
               <div
@@ -63,7 +63,7 @@ const Skills = () => {
       )}
 
       <button
-        className="my-2 text-indigo-600 text-md underline"
+        className="skills-toggle"
         onClick={() => setShowAll((prev) => !prev)}
       >
         {ShowAll ? "Back" : "Show all"}

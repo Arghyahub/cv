@@ -15,10 +15,10 @@ interface Props {
 
 const ExperienceCard = ({ exp }: Props) => {
   return (
-    <div className="flex flex-col mb-16 px-4 w-full h-full">
-      <h1 className="font-semibold text-md md:text-lg">{exp.title}</h1>
-      <p className="mb-4">@{exp.company}</p>
-      <p className="text-sm md:text-base">{exp.description}</p>
+    <div className="experience-card-content">
+      <h3>{exp.title}</h3>
+      <p className="experience-company">{exp.company}</p>
+      <p className="experience-description">{exp.description}</p>
       {exp.tech.length > 0 && (
         // <p className="mt-2 text-sm md:text-base">
         //   <b>Tech:</b> {exp.tech}

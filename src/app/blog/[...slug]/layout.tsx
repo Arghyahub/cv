@@ -9,6 +9,20 @@ interface Props {
   };
 }
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "");
+
+function formatTitle(title: string) {
+  return title
+    .replace(/([a-z])([A-Z])/g, "$1 $2")
+    .replaceAll("-", " ")
+    .replace(/\b\w/g, (character) => character.toUpperCase());
+}
+
+function toIsoDate(date: string) {
+  const [day, month, year] = date.split("-").map(Number);
+  return new Date(Date.UTC(year, month - 1, day)).toISOString();
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // read route params
   const { slug } = params;
@@ -34,9 +48,28 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: "Not found",
     };
 
+  const title = formatTitle(blogData.title);
+  const articleUrl = siteUrl
+    ? `${siteUrl}/blog/${encodeURIComponent(topicParam)}/${encodeURIComponent(blogParam)}`
+    : undefined;
+
   return {
-    title: blogData.title,
+    title,
     description: blogData.desc,
+    ...(articleUrl ? { alternates: { canonical: articleUrl } } : {}),
+    openGraph: {
+      type: "article",
+      title: `${title} | Arghya Das`,
+      description: blogData.desc,
+      ...(articleUrl ? { url: articleUrl } : {}),
+      publishedTime: toIsoDate(blogData.date),
+      authors: ["Arghya Das"],
+    },
+    twitter: {
+      card: "summary",
+      title: `${title} | Arghya Das`,
+      description: blogData.desc,
+    },
   };
 }
 

@@ -42,16 +42,16 @@ const Projects = () => {
     <div
       id="projects"
       style={{ background: "#f5f5f6" }}
-      className="flex flex-col justify-center items-center gap-16 pt-20 pb-10 w-full min-h-[85vh]"
+      className="flex flex-col justify-center items-center gap-10 px-5 pt-20 pb-16 w-full min-h-[85vh]"
     >
-      <h1 className="font-bold text-3xl">Projects</h1>
-      <div className="flex flex-row justify-center gap-2 md:gap-5 lg:gap-10 w-full">
+      <div className="text-center"><p className="section-label">Selected work</p><h2 className="mt-2 font-bold text-3xl md:text-4xl">Projects</h2></div>
+      <div className="flex flex-row flex-wrap justify-center gap-2 md:gap-3 max-w-3xl">
         {Category.map((cat, ind) => (
           <button
             key={`cat${ind}`}
             onClick={() => handleCategorySelect(cat)}
             className={cn(
-              "hover:bg-[#313bac] hover:text-white transition-colors shadow-md hover:shadow-xl px-1 py-1 lg:px-2 border border-black rounded-lg min-w-12 md:min-w-20 text-black text-xs md:text-sm lg:text-lg capitalize",
+              "hover:bg-[#313bac] hover:text-white transition-colors px-3 py-2 border border-slate-300 rounded-lg text-black text-sm capitalize",
               {
                 "bg-[#313bac] text-white":
                   projectType.toLowerCase() === cat.toLowerCase(),
@@ -62,7 +62,7 @@ const Projects = () => {
           </button>
         ))}
       </div>
-      <div className="flex flex-row flex-wrap justify-center items-center gap-8 w-[90%] md:w-[85%] lg:w-[80%]">
+      <div className="flex flex-row flex-wrap justify-center items-stretch gap-6 max-w-[1400px]">
         {allProjects.map((project, ind) => (
           <ProjectCard project={project} key={ind} />
         ))}
@@ -71,7 +71,7 @@ const Projects = () => {
         onClick={() =>
           setOffset((prev) => Math.min(prev + 4, projectApi.length))
         }
-        className={cn("common-shadow bg-[#313bac] hover:bg-[#414fe6] transition-colors mx-auto px-4 py-3 rounded-lg text-white", {
+        className={cn("project-more-button", {
           "disabled opacity-80 cursor-not-allowed": disableButton,
         })}
       >

@@ -16,7 +16,7 @@ interface Props {
 
 const ProjectCard = ({ project }: Props) => {
   return (
-    <div className="flex flex-col justify-center items-center gap-2 shadow-xl px-3 pt-6 pb-4 rounded-lg w-[275px] h-72 group">
+    <div className="flex flex-col justify-center items-center gap-2 bg-white shadow-md hover:shadow-xl px-3 pt-4 pb-4 rounded-xl w-[275px] h-72 transition-shadow group">
       <div className="relative flex flex-col items-center rounded-t-lg w-full h-36">
         <Image
           src={project.image}

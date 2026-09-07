@@ -17,6 +17,7 @@ import {
   Brain,
   NotebookPen,
   Contact,
+  Palette,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -83,6 +84,14 @@ export default function Sidebar() {
               className="flex flex-row items-center hover:bg-neutral-200 py-5 pl-2 rounded-lg w-full hover:font-semibold cursor-pointer"
             >
               <NotebookPen /> <p className="ml-4">Blogs</p>
+            </Link>
+          </SheetClose>
+          <SheetClose asChild>
+            <Link
+              href={"/theme"}
+              className="flex flex-row items-center hover:bg-neutral-200 py-5 pl-2 rounded-lg w-full hover:font-semibold cursor-pointer"
+            >
+              <Palette /> <p className="ml-4">Theme</p>
             </Link>
           </SheetClose>
           <SheetClose asChild>
