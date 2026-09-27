@@ -19,6 +19,12 @@
   border-radius: 0;
   background: url("/images/personal/mypic.png") center / cover no-repeat;
 }
+@media (min-width: 112.5rem) {
+  .hero-art-wide {
+    max-width: 112.5rem;
+    margin-inline: auto;
+  }
+}
 .hero-copy {
   padding: 0.8rem;
   border: 0;
@@ -315,17 +321,20 @@
   }
   .hero-art-wide {
     grid-template-columns: 1fr;
-    align-content: space-between;
-    min-height: 34rem;
+    align-content: start;
+    min-height: 36rem;
     border-radius: 0;
-    background-position: center;
+    background-position: center bottom;
+    background-size: auto calc(100% - 13rem);
   }
   .hero-copy {
     padding: 0.8rem;
   }
   .hero-copy-left {
     align-self: start;
+    max-width: 20rem;
     margin-left: 1rem;
+    margin-top: 1.25rem;
   }
   .hero-copy-right {
     align-self: end;
